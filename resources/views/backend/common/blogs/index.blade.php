@@ -1,8 +1,8 @@
-@extends('backend.layouts.customer')
-@section('title', 'Orders')
+@extends('backend.layouts.master')
+@section('title', 'Blogs')
 @push('css')
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet" />
+    <link href="{{ asset('lightbox/css/lightbox.css') }}" rel="stylesheet" />
 @endpush
 @section('content')
     <div class="container-fluid py-4">
@@ -13,14 +13,17 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div>
-                                <h5 class="mb-0">All orders</h5>
+                                <h5 class="mb-0">All blogs</h5>
                                 <p class="text-sm mb-0">
-                                Order data.
+                                Blog data.
                                 </p>
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
+                                    <a href="{{ route(Request::segment(1) . '.blogs.create') }}"
+                                        class="btn bg-gradient-primary btn-sm mb-0">+&nbsp; New Blog</a>
                                     
+                               
                             </div>
                         </div>
                     </div>
@@ -31,9 +34,9 @@
                                     <tr>
                                         <th>Sl</th>
                                         <th>Title</th>
-                                        <th>Zip</th>
-                                        <th>Price</th>
+                                        <th>Photo</th>
                                         <th>Status</th>
+                                        <th>Link</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -43,9 +46,9 @@
                                     <tr>
                                         <th>Sl</th>
                                          <th>Title</th>
-                                         <th>Zip</th>
-                                        <th>Price</th>
+                                        <th>Photo</th>
                                         <th>Status</th>
+                                        <th>Link</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -59,7 +62,7 @@
 </div>
     @endsection
     @push('js')
-        <script src="{{ asset('js/lightbox.js') }}"></script> ## for image view ##
+        <script src="{{ asset('lightbox/js/lightbox.js') }}"></script> ## for image view ##
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
         <script>
@@ -110,27 +113,27 @@
                         },
                         'colvis'
                     ],
-                    ajax: "{{ route(Request::segment(1) . '.orders') }}",
+                    ajax: "{{ route(Request::segment(1) . '.blogs.index') }}",
                     columns: [{
                             data: 'DT_RowIndex',
                             orderable: false,
                             searchable: false
                         },
                         {
-                            data: 'plan_title',
-                            name: 'plan_title'
+                            data: 'title',
+                            name: 'title'
                         },
+                        
                         {
-                            data: 'zip_code'
-                        },
-                        {
-                            data: 'total',
-                            name: 'total'
+                            data: 'image',
+                            name: 'image'
                         },
                         {
                             data: 'status'
                         },
-                       
+                        {
+                            data: 'link'
+                        },
                         {
                             data: 'action',
                             name: 'action',
@@ -141,6 +144,24 @@
                 });
             });
 
-           
+            function updateStatus(el) {
+                if (el.checked) {
+                    var status = 1;
+                } else {
+                    var status = 0;
+                }
+                $.post("{{ route(Request::segment(1) . '.blogStatus') }}", {
+                        _token: '{{ csrf_token() }}',
+                        id: el.value,
+                        status: status
+                    },
+                    function(data) {
+                        if (data == 1) {
+                            toastr.success('success', 'Blog Status updated successfully');
+                        } else {
+                            toastr.danger('danger', 'Something went wrong');
+                        }
+                    });
+            }
         </script>
     @endpush

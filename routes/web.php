@@ -1,20 +1,22 @@
 <?php
 
 use App\Helpers\Helper;
+use Illuminate\Support\Facades\Auth;
 use UniSharp\LaravelFilemanager\Lfm;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InsuranceController;
-use App\Http\Controllers\HealthController;
-use App\Http\Controllers\LifeController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\BotManController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CommonController;
-use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LifeController;
+use App\Http\Controllers\BotManController;
+use App\Http\Controllers\CommonController;
+use App\Http\Controllers\HealthController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\RehubCenterController;
+use App\Http\Controllers\Auth\RegisterController;
 Route::get('storate-link', function () {
     $exitCode = Artisan::call('storage:link');
     return 'store link folder create';
@@ -54,6 +56,9 @@ Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], funct
 
 Route::get('/home', [HomeController::class,'index'])->name('home');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+//rehub listing
+Route::get('rehub-listing', [RehubCenterController::class, 'index'])->middleware('auth');
 
 
 

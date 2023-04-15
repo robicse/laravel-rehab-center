@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 @section('title', 'Profile')
 @push('css')
-    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet" />
+    <link href="{{ asset('lightbox/css/lightbox.css') }}" rel="stylesheet" />
 @endpush
 @section('content')
     <div class="card shadow-lg mx-4 card-profile-bottom">
@@ -164,7 +164,7 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/lightbox.js') }}"></script> ## for image view ##
+    <script src="{{ asset('lightbox/js/lightbox.js') }}"></script> ## for image view ##
 
     <script>
         $(document).ready(function() {

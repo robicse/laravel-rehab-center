@@ -19,11 +19,11 @@ class SettingTableSeeder extends Seeder
         if (is_null($setting)) {
             $setting = new Setting();
             $setting->user_id = '1';
-            $setting->name = 'SohiBD';
-            $setting->title = 'Car Dekho BD';
+            $setting->name = 'StarIT';
+            $setting->title = 'StarIT LTD';
             $setting->phone = '(281) 809-0090';
-            $setting->email = 'info@cardekho.com';
-            $setting->address = '30 Commercial Road Fratton, Australia';
+            $setting->email = 'info@starit.com';
+            $setting->address = '30 Commercial Road, USA';
             $setting->favicon = 'uploads/setting/default.png';
             $setting->logo = 'uploads/setting/default.png';
             $setting->footer_logo = 'uploads/setting/default.png';

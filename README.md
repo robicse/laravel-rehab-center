@@ -1,4 +1,4 @@
-<p align="center"><a href="https://sohibd.com" target="_blank"><img src="https://www.sohibd.com/storage/app/files/shares/backend/sohibd-logo.png" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://sohibd.com" target="_blank"><img src="https://staritltd.com/wp-content/uploads/2022/03/cropped-Web_Logo_of_Star_IT_158x80-1.png" width="400" alt="Laravel Logo"></a></p>
 
 ## Laravel 10 With  StartITAdmin Template 
 
@@ -8,7 +8,7 @@
 1. Clone This Code With Link:
 
     ```sh
-    $ https://github.com/zahidul1994/argon-boylar-backend-with-laravel-10.git
+    https://gitlab.com/starit-web-developers/laravel/rehab-center.git
     
     ```
 
@@ -32,6 +32,7 @@
     DB_DATABASE=sohibd
     DB_USERNAME=root
     DB_PASSWORD=
+    
    ```
 
 4. After migrate your database and seeding

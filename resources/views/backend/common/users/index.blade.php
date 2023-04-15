@@ -2,7 +2,7 @@
 @section('title', 'Users')
 @push('css')
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet" />
+    <link href="{{ asset('lightbox/css/lightbox.css') }}" rel="stylesheet" />
 @endpush
 @section('content')
     <div class="container-fluid py-4">
@@ -68,7 +68,7 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/lightbox.js') }}"></script> 
+    <script src="{{ asset('lightbox/js/lightbox.js') }}"></script> 
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script>

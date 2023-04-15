@@ -1,4 +1,4 @@
-@extends('backend.layouts.customer')
+@extends('backend.layouts.writer')
 @section('title', 'Dashboard')
 
 @section('content')

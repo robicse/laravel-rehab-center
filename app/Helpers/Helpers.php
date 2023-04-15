@@ -4,6 +4,7 @@ namespace App\Helpers;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Setting;
+use App\Models\Slider;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -33,6 +34,11 @@ class Helper
     public static function Permissions()
     {
         return  Permission::get();
+    }
+    
+    public static function homeSlider()
+    {
+        return  Slider::wherestatus(1)->inRandomOrder()->take(1)->first();
     }
     
 

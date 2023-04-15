@@ -65,14 +65,16 @@ class RegisterController extends Controller
    
     protected function create(array $data)
     {
+       
        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'user_type' => "Customer",
+            'user_type' => "Writer",
             'language' => json_encode(["en"]),
             'image' => "not-found.webp",
-            'username'=> Generate::Slug($data['name'].date('Y-m-d').$data['phone']),
+            'status' => 1,
+            'username'=> Generate::Slug($data['name'].now().$data['phone']),
             'zip_code' =>  $data['zipcode'],
             'password' => Hash::make($data['password']),
         ]);
@@ -80,7 +82,7 @@ class RegisterController extends Controller
         $profile->user_id= $user->id;
         $profile->gender= 'Male';
         $profile->save();
-        return $user;
+        Auth::login($user->email,$user->password);
     }
 
 
