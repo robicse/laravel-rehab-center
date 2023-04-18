@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <!-- CSRF Token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
+     {!! SEO::generate() !!}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
     <!-- Google Fonts -->
@@ -20,13 +21,14 @@
     <link rel="stylesheet" href="{{asset('frontend/css/set1.css')}}">
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+    @stack('css')
 </head>
 
 <body>
     <!--============================= HEADER =============================-->
     <div class="nav-menu">
         <div class="bg transition">
-            <div class="container-fluid fixed">
+            <div class="container-fluid fixed background-blue">
                 <div class="row">
                     <div class="col-md-12">
                         <nav class="navbar navbar-expand-lg navbar-light">
@@ -48,7 +50,7 @@
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link" href="{{url('writer/rehub-listing')}}" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link" href="{{url('writer/rehab-lists')}}" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Listing
                     <span class="icon-arrow-down"></span>
                   </a>
@@ -75,7 +77,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Blog</a>
                                     </li>
-                                    <li><a href="{{url('rehub-listing')}}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Add Listing</a></li>
+                                    <li><a href="{{url('writer/rehab-lists')}}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Add Listing</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -93,7 +95,7 @@
                 <div class="col-md-12">
                     <div class="copyright">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p>Copyright &copy; 2018 Listing. All rights reserved |  {{@Helper::setting()->title}} is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="{{('/')}}" target="_blank">{{@Helper::setting()->description}}</a></p>
+                        <p>Copyright &copy; {{date('Y')}} Listing. All rights reserved |  {{@Helper::setting()->title}} is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="{{('/')}}" target="_blank">StarIT</a></p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         <ul>
                             <li><a href="{{@Helper::setting()->facebook}}"><span class="ti-facebook"></span></a></li>
@@ -132,6 +134,7 @@
             };
         });
     </script>
+        @stack('js')
 </body>
 
 </html>

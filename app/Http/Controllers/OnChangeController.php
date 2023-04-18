@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\RehubCenter;
+use App\Models\Zipcode;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class RehubCenterController extends Controller
+class OnChangeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * get Zip Code Data.
      */
-    public function index()
+    public function getZipCode($id)
     {
-        //
+        return Zipcode::wherestate($id)->get(['zip','city']);
     }
 
     /**
@@ -34,7 +34,7 @@ class RehubCenterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RehubCenter $rehubCenter)
+    public function show(RehabCenter $RehabCenter)
     {
         //
     }
@@ -42,7 +42,7 @@ class RehubCenterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RehubCenter $rehubCenter)
+    public function edit(RehabCenter $RehabCenter)
     {
         //
     }
@@ -50,7 +50,7 @@ class RehubCenterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RehubCenter $rehubCenter)
+    public function update(Request $request, RehabCenter $RehabCenter)
     {
         //
     }
@@ -58,7 +58,7 @@ class RehubCenterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RehubCenter $rehubCenter)
+    public function destroy(RehabCenter $RehabCenter)
     {
         //
     }

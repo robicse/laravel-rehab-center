@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('image')->default('not-found.webp');
             $table->integer('refer')->nullable();
+            $table->integer('zip_code')->nullable();
             $table->integer('otp')->nullable();
             $table->json('language')->nullable();
             $table->ipAddress('ip_address')->default('101.2.160.0');

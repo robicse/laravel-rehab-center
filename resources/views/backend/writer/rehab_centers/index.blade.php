@@ -1,5 +1,5 @@
 @extends('backend.layouts.writer')
-@section('title', 'Rehub List')
+@section('title', 'Rehab List')
 @push('css')
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="{{ asset('lightbox/css/lightbox.css') }}" rel="stylesheet" />
@@ -13,14 +13,17 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div>
-                                <h5 class="mb-0">All Rehub List</h5>
+                                <h5 class="mb-0">All Rehab List</h5>
                                 <p class="text-sm mb-0">
-                                    Rehub data.
+                                    rehab data.
                                 </p>
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
-                                    
+                                   
+                                        <a href="{{ route(Request::segment(1) . '.rehab-lists.create') }}"
+                                            class="btn bg-gradient-primary btn-sm mb-0">+&nbsp; New Rehab Center</a>
+                                  
                             </div>
                         </div>
                     </div>
@@ -30,10 +33,10 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Title</th>
+                                        <th>Name</th>
+                                        <th>State</th>
                                         <th>Zip</th>
-                                        <th>Price</th>
-                                        <th>Status</th>
+                                       <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -42,9 +45,9 @@
                                 <tfoot>
                                     <tr>
                                         <th>Sl</th>
-                                         <th>Title</th>
-                                         <th>Zip</th>
-                                        <th>Price</th>
+                                        <th>Title</th>
+                                        <th>State</th>
+                                        <th>Zip</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -85,23 +88,26 @@
                         }
                     },
                    
-                    ajax: "{{ route(Request::segment(1) . '.rehub-lists.index') }}",
+                    ajax: "{{ route(Request::segment(1) . '.rehab-lists.index') }}",
                     columns: [{
                             data: 'DT_RowIndex',
                             orderable: false,
                             searchable: false
                         },
                         {
-                            data: 'rehub_name',
-                            name: 'rehub_name'
+                            data: 'rehab_name',
+                            name: 'rehab_name'
                         },
                         {
-                            data: 'zip_code'
+                            data: 'state_name',
+                            name: 'state_name'
                         },
                         {
-                            data: 'total',
-                            name: 'total'
+                            data: 'zip_code',
+                            name: 'zip_code'
                         },
+                        
+                        
                         {
                             data: 'status'
                         },

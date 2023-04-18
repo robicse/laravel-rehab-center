@@ -15,8 +15,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\RehubCenterController;
-use App\Http\Controllers\Auth\RegisterController;
+
+use App\Http\Controllers\OnChangeController;
 Route::get('storate-link', function () {
     $exitCode = Artisan::call('storage:link');
     return 'store link folder create';
@@ -57,8 +57,18 @@ Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], funct
 Route::get('/home', [HomeController::class,'index'])->name('home');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-//rehub listing
-Route::get('rehub-listing', [RehubCenterController::class, 'index'])->middleware('auth');
+
+//onchange 
+
+Route::get('get-zip-code/{id}', [OnChangeController::class, 'getZipCode']);
+
+//onchange
+
+//search
+Route::get('search', [HomeController::class,'search']);
+//search
+
+
 
 
 

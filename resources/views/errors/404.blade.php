@@ -21,7 +21,7 @@
     </div>
 </article>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
    setInterval(function() {
 
     }, 2000);
@@ -30,5 +30,5 @@
         document.location.href = "{{ url()->previous() }}";
 
     }, 2000);
-</script>
+</script> --}}
 

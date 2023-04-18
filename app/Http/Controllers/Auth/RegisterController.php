@@ -58,7 +58,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'min:8','max:68', 'unique:users'],
             'zipcode' => ['required', 'min:4','max:30'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6','max:36', 'confirmed'],
         ]);
     }
 
@@ -82,7 +82,7 @@ class RegisterController extends Controller
         $profile->user_id= $user->id;
         $profile->gender= 'Male';
         $profile->save();
-        Auth::login($user->email,$user->password);
+       return $user;
     }
 
 

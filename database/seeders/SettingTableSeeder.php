@@ -19,10 +19,10 @@ class SettingTableSeeder extends Seeder
         if (is_null($setting)) {
             $setting = new Setting();
             $setting->user_id = '1';
-            $setting->name = 'StarIT';
-            $setting->title = 'StarIT LTD';
+            $setting->name = 'REHAB ET';
+            $setting->title = 'Rehab Etclax';
             $setting->phone = '(281) 809-0090';
-            $setting->email = 'info@starit.com';
+            $setting->email = 'info@rehab.com';
             $setting->address = '30 Commercial Road, USA';
             $setting->favicon = 'uploads/setting/default.png';
             $setting->logo = 'uploads/setting/default.png';
