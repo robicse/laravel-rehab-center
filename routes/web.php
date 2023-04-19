@@ -7,13 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LifeController;
-use App\Http\Controllers\BotManController;
-use App\Http\Controllers\CommonController;
-use App\Http\Controllers\HealthController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\InsuranceController;
-use App\Http\Controllers\SubscribeController;
+
 use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\OnChangeController;
@@ -61,6 +55,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 //onchange 
 
 Route::get('get-zip-code/{id}', [OnChangeController::class, 'getZipCode']);
+Route::get('slider-image-delete/{id}', [OnChangeController::class, 'deleteSliderImage']);
 
 //onchange
 

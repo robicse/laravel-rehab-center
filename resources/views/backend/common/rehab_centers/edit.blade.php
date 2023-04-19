@@ -1,4 +1,4 @@
-@extends('backend.layouts.writer')
+@extends('backend.layouts.master')
 @push('css')
 <link href="{{ asset('backend/assets/select2/css/select2.min.css') }}" rel="stylesheet" />
 <style>
@@ -170,8 +170,6 @@
                                 <span class="text-danger alert">{{ $errors->first('insurance_accepted') }}</span>
                                 @endif
                             </div>
-
-
                             <div class="form-group">
                                 <label for="short_description" class="form-control-label">Short Description [Min:250
                                     Character & Min:500 Character] * </label>
@@ -195,7 +193,9 @@
                                 @if($rehabdata->image==!Null)
                                 <img class="img-fluid p-2" width="300px"
                                     src="{{asset(Storage::url(@$rehabdata->image))}}">
+                                    
                                 @endif
+                               
                             </div>
 
                             <div class="input-group py-2">
@@ -210,12 +210,40 @@
                                 @foreach ($rehabdata->rehabslider as $img)
                                 <div class=" d-flex align-items-center justify-content-around p-2 m-2" onclick="deleteSliderImage( {{ $img->id }} );">
                                         <img src="{{asset(Storage::url(@$img->slider_image))}}" width="200px" height="100px" class="d-block">
+                                        
                                         <span class="m-3 d-block bg-danger p-2 text-light text-bolder" >x</span>
                                 </div>
+                              
                                 @endforeach
 
                             </div>
-
+                            <div class="form-group">
+                                <label for="meta_title" class="form-control-label">Meta Title  </label>
+                                {!! Form::text('meta_title', null, ['id' => 'meta_title', 'class' => 'form-control']) !!}
+                                @if ($errors->has('meta_title'))
+                                    <span class="text-danger alert">{{ $errors->first('meta_title') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="meta_description" class="form-control-label">Meta Description  </label>
+                                {!! Form::text('meta_description', null, ['id' => 'meta_description', 'class' => 'form-control']) !!}
+                                @if ($errors->has('meta_description'))
+                                    <span class="text-danger alert">{{ $errors->first('meta_description') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="json_screma" class="form-control-label">Json Screma </label>
+                                {!! Form::textarea('json_screma', null, ['id' => 'json_screma', 'class' => 'form-control','rows'=>3]) !!}
+                                @if ($errors->has('json_screma'))
+                                    <span class="text-danger alert">{{ $errors->first('json_screma') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="status" class="form-control-label">Status </label>
+                                {!! Form::select('status',[1=>'Publish',0=>'Pending'], null, ['id' => 'status', 'class' => 'form-control select2']) !!}
+                                @if ($errors->has('status'))
+                                    <span class="text-danger alert">{{ $errors->first('status') }}</span>
+                                @endif
 
                             <div class="form-group">
                                 <label for="description" class="form-control-label">Rehab Description * </label>

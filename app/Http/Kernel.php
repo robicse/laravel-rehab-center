@@ -70,7 +70,7 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'superadmin' =>SuperAdmin::class,
         'admin' => Admin::class,
-        'agent' => Writer::class,
+        'writer' => Writer::class,
         
     ];
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Zipcode;
+use App\Models\RehabSlider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use GrahamCampbell\ResultType\Success;
+use Illuminate\Support\Facades\Storage;
 
 class OnChangeController extends Controller
 {
@@ -18,15 +21,20 @@ class OnChangeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function deleteSliderImage($id)
     {
-        //
+        
+      $slider =  RehabSlider::find($id);
+      $slider = Storage::delete(@$slider->slider_image);
+      RehabSlider::whereid($id)->delete();
+      return response(true);
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -34,7 +42,7 @@ class OnChangeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RehabCenter $RehabCenter)
+    public function show()
     {
         //
     }
@@ -42,7 +50,7 @@ class OnChangeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RehabCenter $RehabCenter)
+    public function edit()
     {
         //
     }
@@ -50,7 +58,7 @@ class OnChangeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RehabCenter $RehabCenter)
+    public function update()
     {
         //
     }
@@ -58,7 +66,7 @@ class OnChangeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RehabCenter $RehabCenter)
+    public function destroy()
     {
         //
     }

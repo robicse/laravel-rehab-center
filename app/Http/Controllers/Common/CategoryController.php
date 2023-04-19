@@ -126,7 +126,7 @@ class CategoryController extends Controller
             ]
         );
 
-        // try {
+         try {
             DB::beginTransaction();
             $category = new Category();
             $category->user_id = $this->User->id;
@@ -141,12 +141,12 @@ class CategoryController extends Controller
             DB::commit();
             Toastr::success("Category Created Successfully", "Success");
             return redirect()->route(request()->segment(1) . '.categories.index');
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     $response = ErrorTryCatch::createResponse(false, 500, 'Internal Server Error.', null);
-        //     Toastr::error($response['message'], "Error");
-        //     return back();
-        // }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = ErrorTryCatch::createResponse(false, 500, 'Internal Server Error.', null);
+            Toastr::error($response['message'], "Error");
+            return back();
+        }
     }
 
     /**

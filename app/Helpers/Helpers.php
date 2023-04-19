@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Country;
+use App\Models\RehabCenter;
 use App\Models\State;
 use App\Models\Slider;
 use App\Models\Setting;
@@ -52,7 +53,13 @@ class Helper
     {
         return State::wherestatus(1)->pluck('name', 'code');
     }
-   
+    public static function rehabadmnSeen()
+    {
+       
+            return RehabCenter::whereadmin_seen(0)->count();
+       
+
+    }
    
 
     public static function customImageAsset($value)

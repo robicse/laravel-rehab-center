@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\User;
 use App\Http\Controllers\Controller;

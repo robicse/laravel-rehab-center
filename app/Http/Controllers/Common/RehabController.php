@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Writer;
+namespace App\Http\Controllers\Common;
 use App\Models\RehabCenter;
 use App\Models\RehabSlider;
 use Illuminate\Support\Str;
@@ -22,11 +22,6 @@ class RehabController extends Controller
 
         $this->middleware(function ($request, $next) {
             $this->User = Auth::user();
-            if ($this->User->status == 0) {
-                Toastr::warning("Your Account Deactive", "success");
-                $request->session()->flush();
-                return redirect('login');
-            }
             return $next($request);
         });
     }
@@ -35,23 +30,23 @@ class RehabController extends Controller
      */
     public function index(Request $request)
     {
+       
 
         try {
 
-            $User = $this->User;
-            $data = RehabCenter::whereuser_id($User->id)->latest();
+            $data = RehabCenter::with('user')->latest();
             if ($request->ajax()) {
                 return Datatables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('action', function ($data) use ($User) {
+                    ->addColumn('action', function ($data) {
                         $btn = '<a href=' . route(request()->segment(1) . '.rehab-lists.edit', (encrypt($data->id))) . ' class="btn btn-info btn-sm waves-effect" style="margin-left: 5px"><i class="fa fa-edit"></i></a>';
                         return $btn;
                     })
                     ->addColumn('status', function ($data) {
                         if ($data->status == 0) {
-                            return 'Pending';
+                            return '<div class="form-check form-switch"><input type="checkbox" id="flexSwitchCheckDefault" onchange="updateStatus(this)" class="form-check-input"  value=' . $data->id . ' /></div>';
                         } else {
-                            return 'Publish';
+                            return '<div class="form-check form-switch"><input type="checkbox" id="flexSwitchCheckDefault" checked="" onchange="updateStatus(this)" class="form-check-input"  value=' . $data->id . ' /></div>';
                         }
                     })
                     ->addColumn('image', function ($data) {
@@ -64,7 +59,7 @@ class RehabController extends Controller
                     ->make(true);
             }
 
-            return view('backend.writer.rehab_centers.index');
+            return view('backend.common.rehab_centers.index');
         } catch (\Exception $e) {
             $response = ErrorTryCatch::createResponse(false, 500, 'Internal Server Error.', null);
             Toastr::error($response['message'], "Error");
@@ -77,7 +72,7 @@ class RehabController extends Controller
      */
     public function create()
     {
-        return view('backend.writer.rehab_centers.create');
+        return view('backend.common.rehab_centers.create');
     }
 
     /**
@@ -142,6 +137,10 @@ class RehabController extends Controller
             $rehab->facebook = $request->facebook;
             $rehab->created_by_user_id = Auth::id();
             $rehab->updated_by_user_id = Auth::id();
+            $rehab->meta_title = $request->meta_title;
+            $rehab->meta_description = $request->meta_description;
+            $rehab->json_screma = $request->json_screma;
+            $rehab->status = $request->status;
             $rehab->image = $request->image->store('uploads/rehabcenter');
             $rehab->save();
 
@@ -183,12 +182,9 @@ class RehabController extends Controller
     public function edit($id)
     {
         try {
-            $User = $this->User;
-            if ($User->user_type == 'Admin') {
-                $data = RehabCenter::with('rehabslider')->whereuser_id($User->id)->findOrFail(decrypt($id));
-            } else {
-                $data = RehabCenter::with('rehabslider')->findOrFail(decrypt($id));
-            }
+            $data = RehabCenter::with('rehabslider')->findOrFail(decrypt($id));
+            $data->admin_seen=1;
+            $data->save();
             $jsonInsuranceAccepts = json_decode($data->insurance_accepts); {
                 $insurance = array();
                 for ($i = 0; $i < count($jsonInsuranceAccepts); $i++) {
@@ -196,7 +192,7 @@ class RehabController extends Controller
                 }
                 $insuranceAccepts = collect($insurance)->pluck('name', 'name');
             }
-            return view('backend.writer.rehab_centers.edit', compact('insuranceAccepts'))->with('rehabdata', $data);
+            return view('backend.common.rehab_centers.edit', compact('insuranceAccepts'))->with('rehabdata', $data);
         } catch (\Exception $e) {
             DB::rollBack();
             $response = ErrorTryCatch::createResponse(false, 500, 'Internal Server Error.', null);
@@ -237,7 +233,6 @@ class RehabController extends Controller
         try {
             DB::beginTransaction();
             $rehab = RehabCenter::find($id);
-            $rehab->user_id = $this->User->id;
             $rehab->rehab_name = $request->rehab_name;
             $rehab->state_name = $request->state_name;
             $rehab->country_name = $request->country_name;
@@ -261,6 +256,10 @@ class RehabController extends Controller
             $rehab->twitter = $request->twitter;
             $rehab->pinterest = $request->pinterest;
             $rehab->facebook = $request->facebook;
+            $rehab->meta_title = $request->meta_title;
+            $rehab->meta_description = $request->meta_description;
+            $rehab->json_screma = $request->json_screma;
+            $rehab->status = $request->status;
             $rehab->updated_by_user_id = Auth::id();
             if ($request->hasFile('image')) {
                 $this->validate($request,
@@ -303,5 +302,16 @@ class RehabController extends Controller
     public function destroy(RehabCenter $RehabCenter)
     {
         //
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $rehab = RehabCenter::findOrFail($request->id);
+        $rehab->status = $request->status;
+        $rehab->admin_seen = 1;
+        if ($rehab->save()) {
+            return 1;
+        }
+        return 0;
     }
 }

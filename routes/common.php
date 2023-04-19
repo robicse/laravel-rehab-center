@@ -7,6 +7,7 @@ use App\Http\Controllers\Common\UserController;
 use App\Http\Controllers\Common\SliderController;
 use App\Http\Controllers\Common\SettingController;
 use App\Http\Controllers\Common\CategoryController;
+use App\Http\Controllers\Common\RehabController;
 
 
 Route::resource('roles', RoleController::class);
@@ -29,3 +30,8 @@ Route::post('blog-status', [BlogController::class, 'updateStatus'])->name('blogS
 Route::resource('sliders', SliderController::class);
 Route::post('slider-status', [SliderController::class, 'updateStatus'])->name('sliderStatus');
 ##slider end
+
+##rehab start
+ Route::resource('rehab-lists',RehabController::class);
+ Route::post('rehab-status', [RehabController::class, 'updateStatus'])->name('rehabStatus');
+ ##rehab start

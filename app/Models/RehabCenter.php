@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class RehabCenter extends Model
 {
     use HasFactory;
-    public function rehabcenter(){
+    protected $casts = [
+        'created_at' =>  'datetime:d M Y H:m',
+        
+    ];
+    public function user(){
+        return $this->belongsTo(User::class,'created_by_user_id','id');
+    }
+    public function rehabslider(){
         return $this->hasMany(RehabSlider::class,'rehab_center');
     }
 }
