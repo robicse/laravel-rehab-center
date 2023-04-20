@@ -34,4 +34,5 @@ Route::post('slider-status', [SliderController::class, 'updateStatus'])->name('s
 ##rehab start
  Route::resource('rehab-lists',RehabController::class);
  Route::post('rehab-status', [RehabController::class, 'updateStatus'])->name('rehabStatus');
+ Route::delete('delete-rehab/{id}', [RehabController::class, 'destroy'])->name('rehabDestroy');
  ##rehab start

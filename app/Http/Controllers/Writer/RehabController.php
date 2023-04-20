@@ -142,7 +142,7 @@ class RehabController extends Controller
             $rehab->facebook = $request->facebook;
             $rehab->created_by_user_id = Auth::id();
             $rehab->updated_by_user_id = Auth::id();
-            $rehab->image = $request->image->store('uploads/rehabcenter');
+            $rehab->image = $request->image->store('/');
             $rehab->save();
 
             if ($request->hasFile('slider_image')) {
@@ -154,7 +154,7 @@ class RehabController extends Controller
                 foreach ($request->slider_image as  $thumphoto) {
                     $slider = new RehabSlider();
                     $slider->rehab_center = $rehab->id;
-                    $slider->slider_image = $thumphoto->store('uploads/rehabcenter/sliderimage');
+                    $slider->slider_image = $thumphoto->store('/');
                     $slider->save();
                 }
             }
@@ -269,7 +269,7 @@ class RehabController extends Controller
                     ]
                 );
                 Storage::delete(@$rehab->image);
-                $rehab->image = $request->image->store('uploads/rehabcenter');
+                $rehab->image = $request->image->store('/');
             }
             $rehab->save();
             if ($request->hasFile('slider_image')) {
@@ -281,7 +281,7 @@ class RehabController extends Controller
                 foreach ($request->slider_image as  $thumphoto) {
                     $slider = new RehabSlider();
                     $slider->rehab_center = $rehab->id;
-                    $slider->slider_image = $thumphoto->store('uploads/rehabcenter/sliderimage');
+                    $slider->slider_image = $thumphoto->store('/');
                     $slider->save();
                 }
             }

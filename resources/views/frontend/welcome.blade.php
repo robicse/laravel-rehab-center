@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('css')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+@endpush
 @section('content')
     <!-- SLIDER -->
 
@@ -19,8 +22,8 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-10">
                                 <form class="form-wrap mt-4 ml-2" action="{{url('/search')}}" method="get" role="search">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input type="text" required name="keyword" placeholder="Type zip code  for find rehab center?" class="btn-group1">
+                                    <div class="btn-group ui-widget" role="group" aria-label="Basic example">
+                                        <input type="text" id="tags" required name="keyword" placeholder="Type zip code  for find rehab center?" class="btn-group1">
                                         
                                         <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span>SEARCH<i class="pe-7s-angle-right"></i></button>
                                     </div>
@@ -460,3 +463,51 @@ viewBox="0 0 50 50">
     <!--============================= FOOTER =============================-->
     
 @endsection
+@push('js')
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $( function() {
+      var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+      ];
+      $( "#tags" ).autocomplete({
+        source: function (request, response) {
+        $.ajax({
+                type: 'get',   
+               url: "{{url('get-rehabs-data')}}",
+               data: {
+                keyword: request.term,
+               
+            },
+            success: function (data) {
+                response(data);
+                
+            }
+        });
+    },
+        
+      });
+    } );
+    </script>
+@endpush

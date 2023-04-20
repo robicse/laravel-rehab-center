@@ -37,6 +37,18 @@ class HomeController extends Controller
         return view("frontend.pages.about_us");
     }
 
+    public function getsearchValue(Request $request){
+        if($request->has('keyword')){
+            $data= RehabCenter::wherestatus(1)->where('zip_code','LIKE','%%%'.urldecode($request->keyword).'%%%')->select('zip_code','rehab_name','state_name','country_name')->take(10)->get();
+            $results=array();
+            foreach ($data as $v) {
+                $results[]=['value'=>$v->zip_code.', '. $v->state_name.', '. $v->country_name.' - '.$v->rehab_name];
+      
+            }
+            return response()->json($results);
+
+        }
+    }
 
 // for home page search
     public function search(Request $request){
@@ -65,6 +77,10 @@ class HomeController extends Controller
 
 
     }
+
+
+
+
 
    
 }

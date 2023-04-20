@@ -51,7 +51,6 @@ Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], funct
 Route::get('/home', [HomeController::class,'index'])->name('home');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
 //onchange 
 
 Route::get('get-zip-code/{id}', [OnChangeController::class, 'getZipCode']);
@@ -61,6 +60,7 @@ Route::get('slider-image-delete/{id}', [OnChangeController::class, 'deleteSlider
 
 //search
 Route::get('search', [HomeController::class,'search']);
+Route::get('get-rehabs-data', [HomeController::class,'getsearchValue']);
 //search
 
 

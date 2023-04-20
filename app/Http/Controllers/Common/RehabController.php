@@ -39,7 +39,7 @@ class RehabController extends Controller
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($data) {
-                        $btn = '<a href=' . route(request()->segment(1) . '.rehab-lists.edit', (encrypt($data->id))) . ' class="btn btn-info btn-sm waves-effect" style="margin-left: 5px"><i class="fa fa-edit"></i></a>';
+                        $btn = '<a href=' . route(request()->segment(1) . '.rehab-lists.edit', (encrypt($data->id))) . ' class="btn btn-info btn-sm waves-effect" style="margin-left: 5px"><i class="fa fa-edit"></i></a><button type="button"   title="Delete"   id="deleteBtn" rid="' . $data->id . '" class="btn btn-danger btn-sm waves-effect"><i class="fas fa-trash"></i></button>';
                         return $btn;
                     })
                     ->addColumn('status', function ($data) {
@@ -141,7 +141,7 @@ class RehabController extends Controller
             $rehab->meta_description = $request->meta_description;
             $rehab->json_screma = $request->json_screma;
             $rehab->status = $request->status;
-            $rehab->image = $request->image->store('uploads/rehabcenter');
+            $rehab->image = $request->image->store('/');
             $rehab->save();
 
             if ($request->hasFile('slider_image')) {
@@ -153,7 +153,7 @@ class RehabController extends Controller
                 foreach ($request->slider_image as  $thumphoto) {
                     $slider = new RehabSlider();
                     $slider->rehab_center = $rehab->id;
-                    $slider->slider_image = $thumphoto->store('uploads/rehabcenter/sliderimage');
+                    $slider->slider_image = $thumphoto->store('/');
                     $slider->save();
                 }
             }
@@ -268,7 +268,7 @@ class RehabController extends Controller
                     ]
                 );
                 Storage::delete(@$rehab->image);
-                $rehab->image = $request->image->store('uploads/rehabcenter');
+                $rehab->image = $request->image->store('/');
             }
             $rehab->save();
             if ($request->hasFile('slider_image')) {
@@ -280,7 +280,7 @@ class RehabController extends Controller
                 foreach ($request->slider_image as  $thumphoto) {
                     $slider = new RehabSlider();
                     $slider->rehab_center = $rehab->id;
-                    $slider->slider_image = $thumphoto->store('uploads/rehabcenter/sliderimage');
+                    $slider->slider_image = $thumphoto->store('/');
                     $slider->save();
                 }
             }
@@ -299,9 +299,18 @@ class RehabController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RehabCenter $RehabCenter)
+    public function destroy($id)
     {
-        //
+       
+        $rehab = RehabCenter::with('rehabslider')->findOrFail($id);
+        foreach ($rehab->rehabslider as  $info) {
+            $slider = RehabSlider::find($info->id);
+            Storage::delete(@$slider->slider_image);
+            $slider->delete();
+        }
+         Storage::delete(@$rehab->image);
+        $rehab->delete();
+        return response()->json(['success' => true,],201);
     }
 
     public function updateStatus(Request $request)

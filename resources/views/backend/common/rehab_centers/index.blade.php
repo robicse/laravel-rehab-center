@@ -132,6 +132,28 @@
                     ]
                 });
             });
+                    //Delete Admin
+        $(document).on('click', '#deleteBtn', function() {
+            if (!confirm('Are You Sure?')) return;
+            $id = $(this).attr('rid');
+            //console.log($roomid);
+            $info_url = url +'/'+ '{{Request::segment(1)}}'+'/delete-rehab/' + $id;
+            $.ajax({
+                url: $info_url,
+                method: "DELETE",
+                type: "delete",
+               success: function(data) {
+                    if (data) {
+                        toastr.warning('success', 'Rehab Delete  Successfully');
+                        $('#datatable-basic').DataTable().ajax.reload();
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
             function updateStatus(el) {
                 if (el.checked) {
                     var status = 1;

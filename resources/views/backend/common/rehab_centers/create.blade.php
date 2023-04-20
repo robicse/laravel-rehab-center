@@ -1,4 +1,4 @@
-@extends('backend.layouts.writer')
+@extends('backend.layouts.master')
 @section('title', 'Create Rehab Center')
 @push('css')
 <link href="{{ asset('backend/assets/select2/css/select2.min.css') }}" rel="stylesheet" />
@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex align-items-center">
-                            <p class="mb-0">rehab Center Create</p>
+                            <p class="mb-0">Rehab Center Create</p>
                             <a href="{{ route(Request::segment(1) . '.rehab-lists.index') }}"
                                 class="btn btn-primary btn-sm ms-auto">Back</a>
                         </div>
