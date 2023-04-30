@@ -23,9 +23,9 @@
                             <div class="col-md-10">
                                 <form class="form-wrap mt-4 ml-2" action="{{url('/search')}}" method="get" role="search">
                                     <div class="btn-group ui-widget" role="group" aria-label="Basic example">
-                                        <input type="text" id="tags" required name="keyword" placeholder="Type zip code  for find rehab center?" class="btn-group1">
+                                        <input type="text" id="tags" required name="keyword" placeholder="Type zip code  for find Rehab center" class="btn-group1">
                                         
-                                        <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span>SEARCH<i class="pe-7s-angle-right"></i></button>
+                                        <button type="submit"  id="search" class="btn-form"><span class="icon-magnifier search-icon"></span>SEARCH<i class="pe-7s-angle-right"></i></button>
                                     </div>
                                 </form>
                                
@@ -467,7 +467,10 @@ viewBox="0 0 50 50">
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
 
-      $( "#tags" ).autocomplete({
+      $( "#tags").autocomplete({
+        minLength: 1,
+       autoFocus: true,
+       delay: 350,
         source: function (request, response) {
         $.ajax({
                 type: 'get',   
@@ -482,8 +485,8 @@ viewBox="0 0 50 50">
             }
         });
     },
-        
-      });
+   
+})
 
     </script>
 @endpush

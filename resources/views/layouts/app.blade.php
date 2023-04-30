@@ -24,6 +24,12 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     @stack('css')
+    <style>
+.jackclass{
+    background: #0000 !important;
+}
+
+    </style>
 </head>
 
 <body>

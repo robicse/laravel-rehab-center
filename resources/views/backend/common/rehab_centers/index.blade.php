@@ -38,6 +38,7 @@
                                         <th>Name</th>
                                         <th>State</th>
                                         <th>Zip</th>
+                                        <th>Link</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -52,6 +53,7 @@
                                         <th>Name</th>
                                         <th>State</th>
                                         <th>Zip</th>
+                                        <th>Link</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -119,6 +121,9 @@
                             name: 'zip_code'
                         },                       
                         
+                        {
+                            data: 'link'
+                        },
                         {
                             data: 'status'
                         },

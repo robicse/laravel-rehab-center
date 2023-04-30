@@ -131,82 +131,33 @@
                 <div class="row ng-scope">
                     
                     <div class="col-md-12 col-md-pull-3">
-                        <p class="search-results-count">About 94 700 000  results</p>
+                        <p class="search-results-count">About {{@$searchresult->total()}}   results</p>
+                        @forelse ($searchresult as $result)
+                            
+                       
                         <section class="search-result-item border  rounded">
-                            <a class="image-link" href="#"><img class="img-fluid" src="http://rehab.staritltd-live.xyz/storage/files/1/news/Dinwiddie-center-photo-website-2.jpg" style="width:300px; height:200px">
+                            <a class="image-link" href="{{url('rehab-center',@$result->slug)}}"><img class="img-fluid" src="{{Storage::url($result->image)}}" style="width:300px; height:200px">
                             </a>
                             <div class="search-result-item-body">
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <h4 class="search-result-item-heading "><a href="#">Oro House Recovery Centers</a></h4>
-                                        <p class="info">New York, NY 20188</p>
-                                        <p class="description">Serving the greater Las Vegas area and beyond, Desert Hope tailors patient treatment programs to each individual based on their personal history of substance use, the severity of the substance use disorder, and the presence of any co-occurring mental health disorders. In addition to offering individualized care programs.</p>
+                                        <h4 class="search-result-item-heading "><a href="{{url('rehab-center',@$result->slug)}}">{{@$result->rehab_name}}</a></h4>
+                                        <p class="info">{{@$result->country_name}}, {{@$result->state_name}} {{@$result->zip_code}}</p>
+                                        <p class="description">{{@$result->short_description}}  <br> <b> Address: {{@$result->address}}</b> </p>
                                     </div>
                                     <div class="col-md-3 text-align-center">
-                                        <p class="value3 mt-sm"><a href="tel:+4733378901">+47 333 78 901</a></p>
-                                        <p class="fs-mini text-muted"><a class="btn btn-primary btn-success btn-sm" href="mailto:example@gmail.com">Send Email</a></p><a class="btn btn-primary btn-info btn-sm" href="#">See Details</a>
+                                        <p class="value3 mt-sm"><a href="tel:+{{@$result->phone_number}}"> {{@$result->phone_number}}</a></p>
+                                        <p class="fs-mini text-muted"><a class="btn btn-primary btn-success btn-sm" href="mailto:{{@$result->email_address}}">Send Email</a></p><a class="btn btn-primary btn-info btn-sm" href="{{url('rehab-center',@$result->slug)}}">See Details</a>
                                     </div>
                                 </div>
                             </div>
                         </section>
-                        <section class="search-result-item border  rounded">
-                            <a class="image-link" href="#"><img class="img-fluid" src="http://rehab.staritltd-live.xyz/storage/files/1/news/kiss-and-hug%20-for-%20better%20-health.jpg" style="width:300px; height:200px">
-                            </a>
-                            <div class="search-result-item-body">
-                                <div class="row">
-                                    <div class="col-sm-9">
-                                        <h4 class="search-result-item-heading"><a href="#">Best Rehab Center</a> </h4>
-                                        <p class="info">New York, NY 20188</p>
-                                        <p class="description">Serving the greater Las Vegas area and beyond, Desert Hope tailors patient treatment programs to each individual based on their personal history of substance use, the severity of the substance use disorder, and the presence of any co-occurring mental health disorders. In addition to offering individualized care programs.</p>
-                                    </div>
-                                    <div class="col-sm-3 text-align-center">
-                                        <p class="fs-mini text-muted"><a href="tel:+4733378901">+47 333 78 901</a><a class="btn btn-primary btn-success btn-sm" href="mailto:example@gmail.com">Send Email</a></p><a class="btn btn-primary btn-info btn-sm" href="#">See Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="search-result-item border  rounded">
-                            <a class="image-link" href="#"><img class="img-fluid" src="http://rehab.staritltd-live.xyz/storage/files/1/news/healthy-family.jpg" style="width:300px; height:200px">
-                            </a>
-                            <div class="search-result-item-body">
-                                <div class="row">
-                                    <div class="col-sm-9">
-                                        <h4 class="search-result-item-heading"><a href="#">Haven Recovery Centers</a></h4>
-                                        <p class="info">New York, NY 20188</p>
-                                        <p class="description">Serving the greater Las Vegas area and beyond, Desert Hope tailors patient treatment programs to each individual based on their personal history of substance use, the severity of the substance use disorder, and the presence of any co-occurring mental health disorders. In addition to offering individualized care programs</p>
-                                    </div>
-                                    <div class="col-sm-3 text-align-center">
-                                        <p class="fs-mini text-muted"><a href="tel:+4733378901">+47 333 78 901</a> <a class="btn btn-primary btn-success btn-sm" href="mailto:example@gmail.com">Send Email</a></p><a class="btn btn-primary btn-info btn-sm" href="#">See Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="search-result-item border  rounded">
-                            <a class="image-link" href="#"><img class="img-fluid" src="https://crimages.recoverybrands.com/cache/299/listings/image-0.231896001526319430.jpg" style="width:300px; height:200px">
-                            </a>
-                            <div class="search-result-item-body">
-                                <div class="row">
-                                    <div class="col-sm-9">
-                                        <h4 class="search-result-item-heading"><a href="#">Desert Hope Treatment</a></h4>
-                                        <p class="info">Minsk, NY 20188</p>
-                                        <p class="description">Serving the greater Las Vegas area and beyond, Desert Hope tailors patient treatment programs to each individual based on their personal history of substance use, the severity of the substance use disorder, and the presence of any co-occurring mental health disorders. In addition to offering individualized care programs</p>
-                                    </div>
-                                    <div class="col-sm-3 text-align-center">
-                                        <p class="fs-mini text-muted"><a href="tel:+4733378901">+47 333 78 901</a> <a class="btn btn-primary btn-success btn-sm" href="mailto:example@gmail.com">Send Email</a></p><a class="btn btn-primary btn-info btn-sm" href="#">See Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                        @empty
+                        <h5>No Search  Data Found</h5>
+                        @endforelse
+                 
                         <div class="mt-2">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                </ul>
-                              </nav>
+                            {{$searchresult->onEachSide(1)->links()}}
                         </div>
                     </div>
                 </div>

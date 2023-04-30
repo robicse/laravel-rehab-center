@@ -53,7 +53,7 @@ class RehabController extends Controller
                         return '<a title="Click for View" data-lightbox="roadtrip" href="' . asset($data->image) . '"><img id="demo-test-gallery" class="border-radius-lg shadow demo-gallery" src="' . asset($data->image) . '" height="40px" width="40px"/>';
                     })
                     ->addColumn('link', function ($data) {
-                        return '<a title="Click for View" target="_blank" href="' . url('rehab', $data->slug) . '"><i class="fa fa-link"></i></a>';
+                        return '<a title="Click for View" target="_blank" href="' . url('rehab-center', $data->slug) . '"><i class="fa fa-link"></i></a>';
                     })
                     ->rawColumns(['image', 'action', 'status', 'link'])
                     ->make(true);
@@ -137,8 +137,6 @@ class RehabController extends Controller
             $rehab->facebook = $request->facebook;
             $rehab->created_by_user_id = Auth::id();
             $rehab->updated_by_user_id = Auth::id();
-            $rehab->meta_title = $request->meta_title;
-            $rehab->meta_description = $request->meta_description;
             $rehab->json_screma = $request->json_screma;
             $rehab->status = $request->status;
             $rehab->image = $request->image->store('/');
@@ -256,9 +254,7 @@ class RehabController extends Controller
             $rehab->twitter = $request->twitter;
             $rehab->pinterest = $request->pinterest;
             $rehab->facebook = $request->facebook;
-            $rehab->meta_title = $request->meta_title;
-            $rehab->meta_description = $request->meta_description;
-            $rehab->json_screma = $request->json_screma;
+           $rehab->json_screma = $request->json_screma;
             $rehab->status = $request->status;
             $rehab->updated_by_user_id = Auth::id();
             if ($request->hasFile('image')) {

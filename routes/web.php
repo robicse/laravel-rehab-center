@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RehabController;
 
 use App\Http\Controllers\Auth\LoginController;
 
@@ -63,6 +64,9 @@ Route::get('search', [HomeController::class,'search']);
 Route::get('get-rehabs-data', [HomeController::class,'getsearchValue']);
 //search
 
+//rehab center
+Route::get('rehab-center/{id}', [RehabController::class,'show']);
+//rehab center
 
 
 

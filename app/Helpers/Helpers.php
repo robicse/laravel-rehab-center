@@ -53,6 +53,10 @@ class Helper
     {
         return State::wherestatus(1)->pluck('name', 'code');
     }
+    public static function findStateName($id)
+    {
+        return State::wherecode($id)->first()->name;
+    }
     public static function rehabadmnSeen()
     {
        

@@ -42,16 +42,25 @@ class HomeController extends Controller
             $data= RehabCenter::wherestatus(1)->where('zip_code','LIKE','%%%'.urldecode($request->keyword).'%%%')->select('zip_code','rehab_name','state_name','country_name')->take(10)->get();
             $results=array();
             foreach ($data as $v) {
-                $results[]=['value'=>$v->zip_code.', '. $v->state_name.', '. $v->country_name.' - '.$v->rehab_name];
+                $results[]=['value'=>$v->zip_code.'-'. $v->state_name.'-'. $v->country_name.' - '.$v->rehab_name];
       
             }
             return response()->json($results);
 
+        }else{
+            $data= RehabCenter::wherestatus(1)->select('zip_code','rehab_name','state_name','country_name')->inRandomOrder()->take(10)->get();
+            $results=array();
+            foreach ($data as $v) {
+                $results[]=['value'=>$v->zip_code.'-'. $v->state_name.'-'. $v->country_name.' - '.$v->rehab_name];
+      
+            }
+            return response()->json($results);
         }
     }
 
 // for home page search
     public function search(Request $request){
+        
         SEOMeta::setRobots('index, follow');
               OpenGraph::addProperty('type', 'website');
               JsonLd::setType('website');
@@ -59,23 +68,11 @@ class HomeController extends Controller
               SEOTools::setDescription('Rehab Center Search List');
               SEOMeta::addKeyword('Rehab');
              SEOTools::opengraph()->setUrl(url('/search'));
-        $id=$request->keyword;
-      if(!empty($id)){
-      $data= RehabCenter::wherestatus(1)->where('zip_code','LIKE','%'.urldecode($id).'%')->select('slug','rehab_name','image','id','zip_code','short_description')->latest()->limit(6)->get();
-      if($data){
-         return view('frontend.rehab_centers.search_result')->with('searchresult',$data);
-      }
-     else{
-        return view('frontend.rehab_centers.search_result');
-        //   return back();
-     }
-      }
-       else{
-        return view('frontend.rehab_centers.search_result');
-        //   return back();
-     }
-
-
+        $id= explode('-',@$request->keyword);
+       $data= RehabCenter::wherestatus(1)->where('zip_code','LIKE','%%%'.urldecode(@$id[0]).'%%%')->select('slug','rehab_name','image','id','zip_code','short_description','country_name','state_name','phone_number','address')->latest()->paginate(10);
+     return view('frontend.rehab_centers.search_result')->with('searchresult',$data);
+     
+     
     }
 
 
