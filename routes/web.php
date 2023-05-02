@@ -1,5 +1,4 @@
 <?php
-
 use App\Helpers\Helper;
 use Illuminate\Support\Facades\Auth;
 use UniSharp\LaravelFilemanager\Lfm;
@@ -8,7 +7,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RehabController;
-
+use App\Http\Controllers\RehabReviewController;
 use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\OnChangeController;
@@ -66,6 +65,7 @@ Route::get('get-rehabs-data', [HomeController::class,'getsearchValue']);
 
 //rehab center
 Route::get('rehab-center/{id}', [RehabController::class,'show']);
+Route::post('rehab-review-store', [RehabReviewController::class,'store'])->name('rehab-review-store');
 //rehab center
 
 

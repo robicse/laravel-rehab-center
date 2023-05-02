@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('rehab_center')->unsigned()->nullable();
             $table->foreign('rehab_center')->references('id')->on('rehab_centers')->onDelete('cascade');
             $table->string('review_title')->nullable();
-            $table->float('rate',10,1)->default(0);
+            $table->float('rating',10,1)->default(0);
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

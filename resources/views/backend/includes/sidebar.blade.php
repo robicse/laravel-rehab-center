@@ -52,7 +52,13 @@
                         <li class="nav-item {{Request::is(Request::segment(1) .'/rehab-lists*') ? 'active' : ''}}">
                             <a class="nav-link " href="{{route(Request::segment(1) . '.rehab-lists.index')}}">
                                 <span class="sidenav-mini-icon"> S </span>
-                                <span class="sidenav-normal">Rehab  </span>
+                                <span class="sidenav-normal">Rehab List </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{Request::is(Request::segment(1) .'/rehab-review-lists*') ? 'active' : ''}}">
+                            <a class="nav-link " href="{{route(Request::segment(1) . '.rehab-review-lists.index')}}">
+                                <span class="sidenav-mini-icon"> S </span>
+                                <span class="sidenav-normal">Rehab Review <b class="badge badge-danger badge-sm">{{Helper::rehabreviewadmnSeen()}}</b></span>
                             </a>
                         </li>
                        

@@ -34,9 +34,8 @@ class RehabController extends Controller
         SEOTools::opengraph()->setUrl(url('rehab-center',@$data->slug));
         OpenGraph::addImage(url($data->image), ['height' => 315, 'width' => 600]);
        $recentBlogs=Blog::wherestatus(1)->take(12)->get();
-        return view('frontend.rehab_centers.show',compact('recentBlogs'))->with('rehabDetails',$data);
-              
-           
+       $otherRehab=RehabCenter::wherestatus(1)->whereNot('id', $data->id)->inRandomOrder()->take(4)->get();
+        return view('frontend.rehab_centers.show',compact('recentBlogs','otherRehab'))->with('rehabDetails',$data);
      }
      else{
        abort(404);

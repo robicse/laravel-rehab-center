@@ -2,11 +2,12 @@
 
 namespace App\Helpers;
 
-use App\Models\Country;
-use App\Models\RehabCenter;
 use App\Models\State;
 use App\Models\Slider;
+use App\Models\Country;
 use App\Models\Setting;
+use App\Models\RehabCenter;
+use App\Models\RehabReview;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -61,6 +62,13 @@ class Helper
     {
        
             return RehabCenter::whereadmin_seen(0)->count();
+       
+
+    }
+    public static function rehabreviewadmnSeen()
+    {
+       
+            return RehabReview::whereadmin_seen(0)->count();
        
 
     }

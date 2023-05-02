@@ -19,6 +19,6 @@ class RehabCenter extends Model
         return $this->hasMany(RehabSlider::class,'rehab_center');
     }
     public function rehabreview(){
-        return $this->hasMany(RehabReview::class,'rehab_center');
+        return $this->hasMany(RehabReview::class,'rehab_center')->wherestatus(1);
     }
 }

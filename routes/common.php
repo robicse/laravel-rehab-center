@@ -8,6 +8,8 @@ use App\Http\Controllers\Common\SliderController;
 use App\Http\Controllers\Common\SettingController;
 use App\Http\Controllers\Common\CategoryController;
 use App\Http\Controllers\Common\RehabController;
+use App\Http\Controllers\Common\RehabReviewController;
+use App\Http\Controllers\Common\CommandController;
 
 
 Route::resource('roles', RoleController::class);
@@ -35,4 +37,15 @@ Route::post('slider-status', [SliderController::class, 'updateStatus'])->name('s
  Route::resource('rehab-lists',RehabController::class);
  Route::post('rehab-status', [RehabController::class, 'updateStatus'])->name('rehabStatus');
  Route::delete('delete-rehab/{id}', [RehabController::class, 'destroy'])->name('rehabDestroy');
- ##rehab start
+ ##rehab end
+
+ 
+##rehab review start
+Route::resource('rehab-review-lists',RehabReviewController::class);
+Route::post('rehab-review-status', [RehabReviewController::class, 'updateStatus'])->name('rehabreviewsStatus');
+Route::delete('delete-rehab-review/{id}', [RehabReviewController::class, 'destroy'])->name('rehabreviewDestroy');
+##rehab review end
+ 
+##artisan command  start
+Route::get('artisan-command',[CommandController::class,'index'])->name('artisanCommand');
+Route::get('artisan/{command}/{param}',[CommandController::class,'artisan']);
