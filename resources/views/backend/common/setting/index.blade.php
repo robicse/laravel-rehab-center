@@ -19,7 +19,7 @@
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
-                                    <a href="{{ route(Request::segment(1) . '.artisan-command') }}"
+                                    <a href="{{ route(Request::segment(1) . '.artisanCommand') }}"
                                         class="btn bg-gradient-primary btn-sm mb-0">+&nbsp; Command</a>
                                     
                             </div>
