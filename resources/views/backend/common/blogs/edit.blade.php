@@ -1,5 +1,16 @@
 @extends('backend.layouts.master')
 @section('title', 'Update Blog')
+@push('css')
+<link href="{{ asset('backend/assets/select2/css/select2.min.css') }}" rel="stylesheet" />
+<style>
+    .select2-selection__choice {
+        background-color: var(--bs-gray-200);
+        border: none !important;
+        font-size: 12px;
+        font-size: 0.85rem !important;
+    }
+</style>
+@endpush
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
@@ -38,7 +49,10 @@
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/ckeditor.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/adapters/jquery.js"></script>
+<script src="{{asset('backend/assets/select2/js/select2.min.js')}}"></script>
+
 <script>
+    $('.select2').select2();
     $('#lfm').filemanager('image');
     var route_prefix = "/filemanager";
         $('textarea[name=long_description]').ckeditor({

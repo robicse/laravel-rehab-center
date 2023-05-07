@@ -2,10 +2,12 @@
 
 namespace App\Helpers;
 
+use App\Models\Blog;
 use App\Models\State;
 use App\Models\Slider;
 use App\Models\Country;
 use App\Models\Setting;
+use App\Models\Category;
 use App\Models\RehabCenter;
 use App\Models\RehabReview;
 use Illuminate\Support\Str;
@@ -34,13 +36,12 @@ class Helper
         return Cache::rememberForever('setting', function () {
             return Setting::firstOrFail();
         });
-
     }
     public static function Permissions()
     {
         return  Permission::get();
     }
-    
+
     public static function homeSlider()
     {
         return  Slider::wherestatus(1)->inRandomOrder()->take(1)->first();
@@ -60,23 +61,28 @@ class Helper
     }
     public static function rehabadmnSeen()
     {
-       
-            return RehabCenter::whereadmin_seen(0)->count();
-       
 
+        return RehabCenter::whereadmin_seen(0)->count();
     }
     public static function rehabreviewadmnSeen()
     {
-       
-            return RehabReview::whereadmin_seen(0)->count();
-       
 
+        return RehabReview::whereadmin_seen(0)->count();
     }
-   
 
+    //useing blog post
+    public static function getCategory()
+    {
+        return Category::wherestatus(1)->pluck('name', 'name');
+    }
+
+
+    public static function frontBlog()
+    {
+        return Blog::wherestatus(1)->latest()->take(6)->get(['title', 'image', 'short_description', 'slug', 'category', 'created_at']);
+    }
     public static function customImageAsset($value)
     {
-        return asset('storage/app/'.$value ?: 'frontend/assets/images/backgrounds/page-header-bg.jpg');
+        return asset('storage/app/' . $value ?: 'frontend/assets/images/backgrounds/page-header-bg.jpg');
     }
-
 }

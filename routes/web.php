@@ -9,35 +9,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RehabController;
 use App\Http\Controllers\RehabReviewController;
 use App\Http\Controllers\Auth\LoginController;
-
 use App\Http\Controllers\OnChangeController;
-Route::get('storate-link', function () {
-    $exitCode = Artisan::call('storage:link');
-    return 'store link folder create';
-});
-Route::get('clear-cache', function () {
-    $exitCode = Artisan::call('optimize:clear');
-    return 'cache clear';
-});
+
+
 Route::fallback(function () {
     abort(404);
 });
-Route::get('migrate', function () {
-    Artisan::call(
-        'migrate',
-        array(
-          '--path' => 'database/migrations',
-          '--database' => 'mysql',
-          '--force' => true
-        )
-      );
-    return 'migrate done';
-});
 
-Route::get('dbseed', function () {
-    Artisan::call('db:seed');
-    return 'Seeding done';
-});
+
+
 
 Route::get('/', [HomeController::class,'index']);
 Route::get('/main', [HomeController::class,'main']);
@@ -67,6 +47,12 @@ Route::get('get-rehabs-data', [HomeController::class,'getsearchValue']);
 Route::get('rehab-center/{id}', [RehabController::class,'show']);
 Route::post('rehab-review-store', [RehabReviewController::class,'store'])->name('rehab-review-store');
 //rehab center
+
+//blog center
+Route::get('blog', [BlogController::class,'index']);
+Route::get('blog/{id}', [BlogController::class,'show']);
+
+//blog center
 
 
 

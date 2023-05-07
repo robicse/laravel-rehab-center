@@ -43,7 +43,7 @@
     </div>
     <div class="form-group">
         <label for="category" class="form-control-label">Category * </label>
-        {!! Form::select('category',Helper::getCategory(), null, ['id' => 'category', 'class' => 'form-control','placeholder'=>'Select One']) !!}
+        {!! Form::select('category',Helper::getCategory(), null, ['id' => 'category', 'class' => 'form-control select2','placeholder'=>'Select One']) !!}
         @if ($errors->has('category'))
             <span class="text-danger alert">{{ $errors->first('category') }}</span>
         @endif
@@ -62,7 +62,7 @@
             <i class="fa fa-picture-o"></i> Image *
           </a>
         </span>
-        {!! Form::text('image', null, ['id' => 'thumbnail', 'class' => 'form-control', 'required','readonly']) !!}
+        {!! Form::text('image', null, ['id' => 'thumbnail', 'class' => 'form-control', 'required','readonly','style'=>'height:40px']) !!}
         @if ($errors->has('image'))
         <span class="text-danger alert">{{ $errors->first('image') }}</span>
       @endif
@@ -82,4 +82,12 @@
             <span class="text-danger alert">{{ $errors->first('long_description') }}</span>
         @endif
     </div>
+    <div class="form-group">
+        <label for="status" class="form-control-label">Status *</label>
+        {!! Form::select('status',[1=>'Publish',0=>'Pending'], null, ['id' => 'status', 'class' => 'form-control select2']) !!}
+        @if ($errors->has('status'))
+            <span class="text-danger alert">{{ $errors->first('status') }}</span>
+        @endif
+    </div>
+
 </div>

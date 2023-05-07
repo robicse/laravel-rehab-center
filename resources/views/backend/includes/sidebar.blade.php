@@ -66,8 +66,18 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item {{Request::is(Request::segment(1) .'/categories*') ? 'active' : ''}}">
-                <a class="nav-link"
+            <li class="nav-item">
+                <a class="nav-link {{Request::is(Request::segment(1) .'/blogs*') ? 'active' : ''}}"
+                    href="{{route(Request::segment(1) . '.blogs.index')}}">
+                    <div
+                        class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Blogs  </span>
+                </a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link {{Request::is(Request::segment(1) .'/categories*') ? 'active' : ''}}"
                     href="{{route(Request::segment(1) . '.categories.index')}}">
                     <div
                         class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
@@ -77,8 +87,8 @@
                 </a>
             </li> 
           
-            <li class="nav-item {{Request::is(Request::segment(1) .'/sliders*') ? 'active' : ''}}">
-                <a class="nav-link"
+            <li class="nav-item">
+                <a class="nav-link {{Request::is(Request::segment(1) .'/sliders*') ? 'active' : ''}}"
                     href="{{route(Request::segment(1) . '.sliders.index')}}">
                     <div
                         class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
@@ -88,8 +98,8 @@
                 </a>
             </li> 
 
-            <li class="nav-item {{Request::is(Request::segment(1) .'/setting*') ? 'active' : ''}}">
-                <a class="nav-link"
+            <li class="nav-item">
+                <a class="nav-link {{Request::is(Request::segment(1) .'/setting*') ? 'active' : ''}}"
                     href="{{route(Request::segment(1) . '.setting.index')}}">
                     <div
                         class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
@@ -99,8 +109,8 @@
                 </a>
             </li> 
            
-            <li class="nav-item {{Request::is(Request::segment(1) .'/filemanager*') ? 'active' : ''}}">
-                <a class="nav-link"
+            <li class="nav-item">
+                <a class="nav-link {{Request::is(Request::segment(1) .'/filemanager*') ? 'active' : ''}}"
                     href="{{url('/filemanager')}}" target="_blank">
                     <div
                         class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">

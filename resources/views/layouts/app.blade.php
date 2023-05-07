@@ -46,45 +46,30 @@
               </button>
                             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Explore
-                     <span class="icon-arrow-down"></span>
-                   </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{{url('/')}}">Home</a>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link" href="{{url('writer/rehab-lists')}}" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Listing
-                    <span class="icon-arrow-down"></span>
-                  </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url('blog')}}">Blog</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Pages
-                    <span class="icon-arrow-down"></span>
-                  </a>
+                                         Rehab
+                                    <span class="icon-arrow-down"></span>
+                                    </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <a class="dropdown-item" href="{{url('rehab')}}">Rehab</a>
+                                            <a class="dropdown-item" href="{{url('rehab')}}">Add Rehab</a>
+                                           
                                         </div>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="#">About</a>
+                                        <a class="nav-link" href="{{url('about')}}">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Blog</a>
+                                        <a class="nav-link" href="{{url('contact')}}">Contact</a>
                                     </li>
+                                   
                                     <li><a href="{{url('writer/rehab-lists')}}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Add Listing</a></li>
                                 </ul>
                             </div>

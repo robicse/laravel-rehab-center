@@ -21,7 +21,7 @@ class SuperAdmin
             return $next($request);
         }
         else{
-            abort(404);
+            return redirect()->route('login');
         }
     }
 }

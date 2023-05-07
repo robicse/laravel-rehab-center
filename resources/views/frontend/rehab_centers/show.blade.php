@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('css')
-<link href="{{ asset('lightbox/css/lightbox.css') }}" rel="stylesheet" />
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -337,7 +337,7 @@
 
 @endsection
 @push('js')
-<script src="{{ asset('lightbox/js/lightbox.js') }}"></script>
+
 <script>
     $(document).ready(function () {
         lightbox.option({
@@ -347,28 +347,6 @@
 
     });
 </script>
-{{-- <script type="text/javascript">
-    function initMap() {
-   const myLatLng = { lat: 23.80464450795751, lng: 90.36002005004849 };
-   const map = new google.maps.Map(document.getElementById("map"), {
-     zoom: 5,
-     center: myLatLng,
-   });
 
-   new google.maps.Marker({
-     position: myLatLng,
-     map,
-     title: "Hello zahidul",
-
-   });
-
- }
- window.initMap = initMap;
-
-</script>
-<script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs_T8aLLZBFBlZ2nXxIuk0MXSZeinenl8&libraries=drawing,places&v=3.45.8&callback=initMap">
-</script>
---}}
 
 @endpush

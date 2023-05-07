@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Common;
-
-use File;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Helpers\ErrorTryCatch;
@@ -18,6 +16,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class BlogController extends Controller
 {
+    private $User;
     function __construct()
     {
 
@@ -112,6 +111,7 @@ class BlogController extends Controller
                 'long_description' => 'required|min:3|max:70000',
                 'image' => 'required',
                 'category' => 'required',
+                'status' => 'required',
                 'slug' => 'required|min:1|max:198|unique:blogs',
 
             ],
@@ -138,6 +138,7 @@ class BlogController extends Controller
             $blog->short_description = $request->short_description;
             $blog->json_screma = $request->json_screma;
             $blog->keyword = $request->keyword;
+            $blog->status = $request->status;
             $blog->long_description = $request->long_description;
             $blog->category = $request->category;
             $blog->image = $request->image;
@@ -215,6 +216,7 @@ class BlogController extends Controller
                 'long_description' => 'required|min:3|max:70000',
                 'category' => 'required|min:1|max:290',
                 'image' => 'required',
+                'status' => 'required',
                 'slug' => 'required|min:1|max:198|unique:blogs,slug,' . $id,
             ],
             [
@@ -241,6 +243,7 @@ class BlogController extends Controller
             $blog->keyword = $request->keyword;
             $blog->long_description = $request->long_description;
             $blog->category = $request->category;
+            $blog->status = $request->status;
             $blog->image = $request->image;
             $blog->save();
             DB::commit();
