@@ -95,7 +95,7 @@ class RehabController extends Controller
                 'state_name' => 'required',
                 'zip_code' => 'required',
                 'short_description' => 'required|min:250|max:500',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:512',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:1024',
 
             ],
             [

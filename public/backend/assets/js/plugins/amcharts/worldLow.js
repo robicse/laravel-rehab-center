@@ -17,7 +17,7 @@
  * PLEASE DO NOT REMOVE THIS COPYRIGHT NOTICE.
  * @hidden
  */
-am4internal_webpackJsonp(["fcaa"], {
+am4internal_'|'ackJsonp(["fcaa"], {
   ATzU: function(e, t, o) {
     "use strict";
     Object.defineProperty(t, "__esModule", {

@@ -44,13 +44,21 @@ class CommandController extends Controller
             Toastr::info("Your command $command  successfully done", "Success");
             return back();
         }
+         elseif ($command == 'cacheall') {
+            Artisan::call('view:cache');
+            Artisan::call('config:cache');
+            Artisan::call('event:cache');
+            Artisan::call('route:cache');
+            Toastr::info("Your command Site Optimize  successfully done", "Success");
+            return back();
+        }
          
         Artisan::call($command . ":" . $param);
         Toastr::info("Your command $command $param successfully done", "Success");
         return back();
     }
 
-public function debugono(){
+public function debugon(){
     
         try {
             $path = app()->environmentFilePath();

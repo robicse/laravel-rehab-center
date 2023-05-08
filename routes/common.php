@@ -18,6 +18,9 @@ Route::post('user-status', [UserController::class, 'updateStatus'])->name('userS
 
 ##user end
 Route::resource('setting', SettingController::class);
+## smtp settings
+Route::get('smtp-settings', [SettingController::class, 'smtpIndex'])->name('smtpIndex');
+Route::post('env_key_update', [SettingController::class, 'envKeyUpdate'])->name('envKeyUpdate');
 
 ##caregory 
 Route::resource('categories', CategoryController::class);
@@ -49,3 +52,4 @@ Route::delete('delete-rehab-review/{id}', [RehabReviewController::class, 'destro
 ##artisan command  start
 Route::get('artisan-command',[CommandController::class,'index'])->name('artisanCommand');
 Route::get('artisan/{command}/{param}',[CommandController::class,'artisan']);
+

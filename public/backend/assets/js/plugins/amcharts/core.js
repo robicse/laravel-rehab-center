@@ -18,8 +18,8 @@
  * @hidden
  */
 ! function(t) {
-  var e = window.am4internal_webpackJsonp;
-  window.am4internal_webpackJsonp = function(i, a, o) {
+  var e = window.am4internal_'|'ackJsonp;
+  window.am4internal_'|'ackJsonp = function(i, a, o) {
     for (var s, l, u, h = 0, c = []; h < i.length; h++) l = i[h], r[l] && c.push(r[l][0]), r[l] = 0;
     for (s in a) Object.prototype.hasOwnProperty.call(a, s) && (t[s] = a[s]);
     for (e && e(i, a, o); c.length;) c.shift()();

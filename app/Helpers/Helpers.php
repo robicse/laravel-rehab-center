@@ -76,6 +76,10 @@ class Helper
         return Category::wherestatus(1)->pluck('name', 'name');
     }
 
+    public static function frontRehabCenter()
+    {
+        return RehabCenter::wherestatus(1)->latest()->take(9)->get(['rehab_name', 'image', 'rating', 'slug', 'created_at','short_description']);
+    }
 
     public static function frontBlog()
     {

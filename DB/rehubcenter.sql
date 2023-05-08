@@ -850,7 +850,7 @@ CREATE TABLE `users` (
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'not-found.webp',
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'not-found.'|'|'|'',
   `refer` int DEFAULT NULL,
   `zip_code` int DEFAULT NULL,
   `otp` int DEFAULT NULL,
@@ -870,7 +870,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `user_type`, `email`, `phone`, `email_verified_at`, `password`, `image`, `refer`, `zip_code`, `otp`, `language`, `ip_address`, `status`, `created_by_user_id`, `updated_by_user_id`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'Admin', 'admin@gmail.com', '0177100000', NULL, '$2y$10$C5mR4QObRzM9YJlqkmmHW.s4sNpqoI3W0B34mgEv1Dycq8lzjBYUW', 'not-found.webp', NULL, NULL, NULL, NULL, '101.2.160.0', 1, 1, 1, NULL, NULL, '2023-04-17 00:15:18', '2023-04-17 00:15:18');
+(1, 'Admin', 'admin', 'Admin', 'admin@gmail.com', '0177100000', NULL, '$2y$10$C5mR4QObRzM9YJlqkmmHW.s4sNpqoI3W0B34mgEv1Dycq8lzjBYUW', 'not-found.'|'|'|'', NULL, NULL, NULL, NULL, '101.2.160.0', 1, 1, 1, NULL, NULL, '2023-04-17 00:15:18', '2023-04-17 00:15:18');
 
 -- --------------------------------------------------------
 

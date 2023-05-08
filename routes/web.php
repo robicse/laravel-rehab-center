@@ -44,6 +44,7 @@ Route::get('get-rehabs-data', [HomeController::class,'getsearchValue']);
 //search
 
 //rehab center
+Route::get('rehab-center', [RehabController::class,'index']);
 Route::get('rehab-center/{id}', [RehabController::class,'show']);
 Route::post('rehab-review-store', [RehabReviewController::class,'store'])->name('rehab-review-store');
 //rehab center
@@ -54,8 +55,12 @@ Route::get('blog/{id}', [BlogController::class,'show']);
 
 //blog center
 
+// static page
+Route::get('contact', [HomeController::class,'contactUs']);
+Route::post('contact', [HomeController::class,'contactStore']);
+Route::get('about', [HomeController::class,'aboutUs']);
 
-
+// static end
 
 
 

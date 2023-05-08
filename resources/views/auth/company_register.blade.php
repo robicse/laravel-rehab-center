@@ -63,7 +63,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="example-text-input" class="form-control-label">Company  (Logo) * [300*300]</label>
-                        <input class="form-control @error('company_logo') is-invalid @enderror" type="file" name="company_logo" required accept="image/png, image/jpeg,image/webp">
+                        <input class="form-control @error('company_logo') is-invalid @enderror" type="file" name="company_logo" required accept="image/png, image/jpeg,image/'|'|'|'">
                      </div>
                  
                     <div class="text-center">

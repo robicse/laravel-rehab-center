@@ -49,168 +49,30 @@
                 </div>
             </div>
             <div class="row">
-               
-                <div class="col-md-4">
+               @foreach (Helper::frontRehabCenter() as $rehabcenter)
+                   <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
                             <div class="find-place-img_wrap">
                                 <div class="grid">
+                                 <a href="{{url('rehab-center',@$rehabcenter->slug)}}"  >
                                     <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/4.jpg')}}" />
+                                        <img src="{{asset(Storage::url(@$rehabcenter->image))}}" class="img-fluid"  alt="{{@$rehabcenter->rehab_name}}"/>
                                         <figcaption>
-                                            <h5>Banyan Treatment </h5>
-                                            <p>21 Review</p>
+                                            <h5>{{@$rehabcenter->rehab_name}} </h5>
+                                            <p> @for ($i = 0; $i < round($rehabcenter->rating); $i++)
+                                                <span class="icon-star text-warning"></span>
+                                                @endfor
+                                                </p>
                                         </figcaption>
                                     </figure>
+                                   </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="row find-img-align">
-                        <div class="col-md-12">
-                            <div class="find-place-img_wrap">
-                                <div class="grid">
-                                    <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/black-1.jpeg')}}" />
-                                        <figcaption>
-                                            <h5>OceanBreeze Recovery</h5>
-                                            <p>10 Review</p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="row find-img-align">
-                        <div class="col-md-12">
-                            <div class="find-place-img_wrap">
-                                <div class="grid">
-                                    <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/6.jpg')}}" />
-                                        <figcaption>
-                                            <h5>Journey Pure</h5>
-                                            <p>5 Review</p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="row find-img-align">
-                        <div class="col-md-12">
-                            <div class="find-place-img_wrap">
-                                <div class="grid">
-                                    <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/10.jpg')}}" />
-                                        <figcaption>
-                                            <h5> Landmark Recovery</h5>
-                                            <p>50 Review</p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="row find-img-align">
-                        <div class="col-md-12">
-                            <div class="find-place-img_wrap">
-                                <div class="grid">
-                                    <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/2.jpeg')}}" />
-                                        <figcaption>
-                                            <h5>Promises Austin</h5>
-                                            <p>10 Review</p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="row find-img-align">
-                        <div class="col-md-12">
-                            <div class="find-place-img_wrap">
-                                <div class="grid">
-                                    <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/7.jpg')}}" />
-                                        <figcaption>
-                                            <h5>Sunflower Wellness</h5>
-                                            <p>0 Review</p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="row find-img-align">
-                        <div class="col-md-12">
-                            <div class="find-place-img_wrap">
-                                <div class="grid">
-                                    <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/1_JS199972397.jpg')}}" />
-                                        <figcaption>
-                                            <h5>Recovery Unplugged</h5>
-                                            <p>50 Review</p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="row find-img-align">
-                        <div class="col-md-12">
-                            <div class="find-place-img_wrap">
-                                <div class="grid">
-                                    <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/8.jpg')}}" />
-                                        <figcaption>
-                                            <h5>Ambrosia </h5>
-                                            <p>20 Review</p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="row find-img-align">
-                        <div class="col-md-12">
-                            <div class="find-place-img_wrap">
-                                <div class="grid">
-                                    <figure class="effect-ruby">
-                                        <img src="{{ asset('storage/files/1/2023/5.jpg')}}" />
-                                        <figcaption>
-                                            <h5>Treatment Cente</h5>
-                                            <p>20 Review</p>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+                @endforeach
             </div>
         </div>
     </section>

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class SettingController extends Controller
 {
+    private $User;
     function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -38,60 +39,14 @@ class SettingController extends Controller
     {
         try {
             $User = $this->User;
-            if ($User->user_type == 'Admin') {
-                $data = Setting::whereuser_id($User->id)->latest();
+            if ($User->user_type == 'Superadmin') {
+                $data = Setting::firstOrFail();
+           
             } else {
-                $data = Setting::latest();
+                $data = Setting::whereuser_id($User->id)->firstOrFail();
             }
-            if ($request->ajax()) {
-                return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function ($data) use ($User) {
-                        $btn = '';
-                        // if ($User->can('slides-edit')) {
-                        $btn =
-                            '<a href=' .
-                            route(
-                                request()->segment(1) . '.setting.edit',
-                                $data->id
-                            ) .
-                            ' class="btn btn-info btn-sm waves-effect" style="margin-left: 5px"><i class="fa fa-edit"></i></a>';
-                        // }
-                        $btn .= '</span>';
-                        return $btn;
-                    })
-                    ->addColumn('status', function ($data) {
-                        if ($data->status == 0) {
-                            return '<span class="badge badge-danger"> <i class="fa fa-ban"></i> </span>';
-                        } else {
-                            return '<span class="badge badge-success"><i class="fa fa-check-square"></i></span>';
-                        }
-                    })
-                    ->addColumn('favicon', function ($data) {
-                        return '<img class="border-radius-lg shadow" src="' .
-                            asset($data->favicon) .
-                            '" height="30px" width="30px"  />';
-                    })
-                    ->addColumn('logo', function ($data) {
-                        return '<img class="border-radius-lg shadow" src="' .
-                            asset($data->logo) .
-                            '" height="30px" width="30px"  />';
-                    })
-                    ->addColumn('footer_logo', function ($data) {
-                        return '<img class="border-radius-lg shadow" src="' .
-                            asset($data->footer_logo) .
-                            '" height="30px" width="30px"  />';
-                    })
-                    ->addColumn('admin_logo', function ($data) {
-                        return '<img class="border-radius-lg shadow" src="' .
-                            asset($data->admin_logo) .
-                            '" height="30px" width="30px"  />';
-                    })
-                    ->rawColumns(['favicon','logo','footer_logo','admin_logo','action', 'status'])
-                    ->make(true);
-            }
-
-            return view('backend.common.setting.index');
+           
+            return view('backend.common.setting.index')->with('settingDetail',$data);
         } catch (\Exception $e) {
             $response = ErrorTryCatch::createResponse(false, 500, 'Internal Server Error.', null);
             Toastr::error($response['message'], "Error");
@@ -116,25 +71,25 @@ class SettingController extends Controller
 
     public function edit($id)
     {
-        // try {
+         try {
             $User = $this->User;
             if ($User->user_type == 'Admin') {
-                $data = Setting::whereuser_id($User->id)->findOrFail($id);
+                $data =  Setting::findOrFail(decrypt($id));
             } else {
-                $data = Setting::findOrFail($id);
+                $data = Setting::whereuser_id($User->id)->findOrFail(decrypt($id));
             }
             return view('backend.common.setting.edit')->with('setting', $data);
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     $response = ErrorTryCatch::createResponse(
-        //         false,
-        //         500,
-        //         'Internal Server Error.',
-        //         null
-        //     );
-        //     Toastr::error($response['message'], 'Error');
-        //     return back();
-        // }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = ErrorTryCatch::createResponse(
+                false,
+                500,
+                'Internal Server Error.',
+                null
+            );
+            Toastr::error($response['message'], 'Error');
+            return back();
+        }
     }
 
     public function update(Request $request, $id)
@@ -168,7 +123,7 @@ class SettingController extends Controller
                         'required|image|mimes:jpeg,png,jpg,gif,webp|max:1024',
                 ]);
                 Storage::delete($setting->favicon);
-                $setting->favicon = $request->favicon->store('uploads/setting');
+                $setting->favicon = $request->favicon->store('/');
             }
             if ($request->hasFile('logo')) {
                 $this->validate($request, [
@@ -176,7 +131,7 @@ class SettingController extends Controller
                         'required|image|mimes:jpeg,png,jpg,gif,webp|max:1024',
                 ]);
                 Storage::delete($setting->logo);
-                $setting->logo = $request->logo->store('uploads/setting');
+                $setting->logo = $request->logo->store('/');
             }
             if ($request->hasFile('footer_logo')) {
                 $this->validate($request, [
@@ -184,7 +139,7 @@ class SettingController extends Controller
                         'required|image|mimes:jpeg,png,jpg,gif,webp|max:1024',
                 ]);
                 Storage::delete($setting->footer_logo);
-                $setting->footer_logo = $request->footer_logo->store('uploads/setting');
+                $setting->footer_logo = $request->footer_logo->store('/');
             }
             if ($request->hasFile('admin_logo')) {
                 $this->validate($request, [
@@ -192,7 +147,7 @@ class SettingController extends Controller
                         'required|image|mimes:jpeg,png,jpg,gif,webp|max:1024',
                 ]);
                 Storage::delete($setting->admin_logo);
-                $setting->admin_logo = $request->admin_logo->store('uploads/setting');
+                $setting->admin_logo = $request->admin_logo->store('/');
             }
             $setting->save();
             Cache::forget('setting'); 
@@ -216,4 +171,40 @@ class SettingController extends Controller
     {
         //
     }
+
+    public function smtpIndex()
+    {
+        return view('backend.common.setting.smtp');
+    }
+
+    public function envKeyUpdate(Request $request)
+    {
+        foreach ($request->types as $key => $type) {
+            $this->overWriteEnvFile($type, $request[$type]);
+        }
+
+        Toastr::success("SMTP updated successfully", "Success");
+        return back();
+    }
+
+    public function overWriteEnvFile($type, $val)
+    {
+        if (env('DEMO_MODE') != 'On') {
+            $path = base_path('.env');
+            if (file_exists($path)) {
+                $val = '"' . trim($val) . '"';
+                if (is_numeric(strpos(file_get_contents($path), $type)) && strpos(file_get_contents($path), $type) >= 0) {
+                    file_put_contents($path, str_replace(
+                        $type . '="' . env($type) . '"', $type . '=' . $val,
+                        file_get_contents($path)
+                    )
+                    );
+                } else {
+                    file_put_contents($path, file_get_contents($path) . "\r\n" . $type . '=' . $val);
+                }
+            }
+        }
+    }
+
+
 }

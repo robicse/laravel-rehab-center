@@ -85,40 +85,40 @@
     </div>
     <div class="form-group">
         <label for="example-text-input" class="form-control-label">Favicon *</label>
-        <input class="form-control" type="file" name="favicon" accept="image/png, image/jpeg,image/webp">
+        <input class="form-control" type="file" name="favicon" accept="image/png, image/jpeg,image/'|'|'|'">
     </div>
     @if ($setting == !null)
-        <img src="{{ url(@$setting->favicon) }}" height="20" width="20">
+        <img src="{{ url(Storage::url(@$setting->favicon)) }}" height="20" width="20">
     @endif
     @if ($errors->has('favicon'))
         <span class="text-danger alert">{{ $errors->first('favicon') }}</span>
     @endif
     <div class="form-group">
         <label for="example-text-input" class="form-control-label">Logo *</label>
-        <input class="form-control" type="file" name="logo" accept="image/png, image/jpeg,image/webp">
+        <input class="form-control" type="file" name="logo" accept="image/png, image/jpeg,image/'|'|'|'">
     </div>
     @if ($setting == !null)
-        <img src="{{ url(@$setting->favicon) }}" height="50" width="50">
+        <img src="{{ url(Storage::url(@$setting->favicon)) }}" height="50" width="50">
     @endif
     @if ($errors->has('logo'))
         <span class="text-danger alert">{{ $errors->first('logo') }}</span>
     @endif
     <div class="form-group">
         <label for="example-text-input" class="form-control-label">Footer Logo *</label>
-        <input class="form-control" type="file" name="footer_logo" accept="image/png, image/jpeg,image/webp">
+        <input class="form-control" type="file" name="footer_logo" accept="image/png, image/jpeg,image/'|'|'|'">
     </div>
     @if ($setting == !null)
-        <img src="{{ url(@$setting->footer_logo) }}" height="50" width="50">
+        <img src="{{ url(Storage::url(@$setting->footer_logo)) }}" height="50" width="50">
     @endif
     @if ($errors->has('footer_logo'))
         <span class="text-danger alert">{{ $errors->first('footer_logo') }}</span>
     @endif
     <div class="form-group">
         <label for="example-text-input" class="form-control-label">Admin Logo *</label>
-        <input class="form-control" type="file" name="admin_logo" accept="image/png, image/jpeg,image/webp">
+        <input class="form-control" type="file" name="admin_logo" accept="image/png, image/jpeg,image/'|'|'|'">
     </div>
     @if ($setting == !null)
-        <img src="{{ url(@$setting->admin_logo) }}" height="50" width="50">
+        <img src="{{ url(Storage::url(@$setting->admin_logo)) }}" height="50" width="50">
     @endif
     @if ($errors->has('admin_logo'))
         <span class="text-danger alert">{{ $errors->first('admin_logo') }}</span>

@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers;
-
 use App\Models\Blog;
 use App\Models\RehabCenter;
 use Illuminate\Http\Request;
@@ -10,7 +9,7 @@ use Artesaos\SEOTools\Facades\SEOTools;
 use Artesaos\SEOTools\Facades\OpenGraph;
 class RehabController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         SEOMeta::setRobots('index, follow');
         OpenGraph::addProperty('type', 'website');
         JsonLd::setType('website');
@@ -18,8 +17,14 @@ class RehabController extends Controller
         SEOTools::setDescription('Rehab List');
         SEOMeta::addKeyword('SohiBD');
        SEOTools::opengraph()->setUrl(url('/'));
-       
-  return view("frontend.welcome");
+       $recentBlogs=Blog::wherestatus(1)->take(12)->get();
+       $id=$request->q;
+       if($id){
+       $data=RehabCenter::wherestatus(1)->where('rehab_name','LIKE','%'.urldecode($id).'%')->paginate(18);
+       }else{
+        $data=RehabCenter::wherestatus(1)->latest()->paginate(18);
+       }
+  return view("frontend.rehab_centers.index",compact('recentBlogs'))->with('rehabListing',$data);
     }
    
     public function show(Request $request, $id)

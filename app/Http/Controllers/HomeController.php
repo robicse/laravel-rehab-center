@@ -2,11 +2,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\RehabCenter;
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Artesaos\SEOTools\Facades\OpenGraph;
+use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
     public function index(){
@@ -33,9 +35,7 @@ class HomeController extends Controller
         return view("frontend.index");
     }
 
-    public function aboutUs(){
-        return view("frontend.pages.about_us");
-    }
+   
 
     public function getsearchValue(Request $request){
         if($request->has('keyword')){
@@ -75,9 +75,92 @@ class HomeController extends Controller
      
     }
 
+ 
+    public function contactUs()
+    {
+          SEOMeta::setRobots('index, follow');
+              OpenGraph::addProperty('type', 'website');
+              JsonLd::setType('website');
+              SEOTools::setTitle('Contact');
+              SEOTools::setDescription('Rehab Contact Us');
+              SEOMeta::addKeyword('Rehab contact');
+             SEOTools::opengraph()->setUrl(url('/contact'));
+             
+        return view("frontend.contact");
+    }
+    public function contactStore(Request $request)
+    {
+       
+          SEOMeta::setRobots('index, follow');
+              OpenGraph::addProperty('type', 'website');
+              JsonLd::setType('website');
+              SEOTools::setTitle('Contact');
+              SEOTools::setDescription('Rehab Contact Us');
+              SEOMeta::addKeyword('Rehab contact');
+             SEOTools::opengraph()->setUrl(url('/contact'));
+             $this->validate($request, [
+                'name' => 'required|min:1|max:80',
+                'email' => 'required|email|min:5|max:60',
+                'message' => 'required|min:1|max:5000',
+                
+          
+              ]);
+              $name = $request->name;
+              $email = $request->email;
+             $message = $request->message;
+          
+              $msg = '
+          <html>
+          <head>
+            <title>Mail from ' . $name . '</title>
+          </head>
+          <body>
+            <table style="width: 500px; font-family: arial; font-size: 14px;" border="1">
+             <tr style="height: 32px;">
+               <th align="right" style="width:150px; padding-right:5px;">Name:</th>
+               <td align="left" style="padding-left:5px; line-height: 20px;">' . $name . '</td>
+             </tr>
+             
+             <tr style="height: 32px;">
+               <th align="right" style="width:150px; padding-right:5px;">E-mail:</th>
+               <td align="left" style="padding-left:5px; line-height: 20px;">' . $email . '</td>
+             </tr>
+             <tr style="height: 32px;">
+               <th align="right" style="width:150px; padding-right:5px;">Message:</th>
+               <td align="left" style="padding-left:5px; line-height: 20px;">' . $message . '</td>
+             </tr>
+            </table>
+          </body>
+          </html>
+          ';
+          
+              $headers = 'MIME-Version: 1.0' . "\r\n";
+              $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+              $headers .= 'From: ' . $email . "\r\n";
+          
+              if (mail(Helper::setting()->email, 'Contact Mail', $msg, $headers)) {
+                Session::flash('message', 'Message Sent Successfully!');
+                return redirect()->back();
+              } else {
+                Session::flash('message', 'Something went wrong! Please try again !');
+                return redirect()->back();
+              }
+              return redirect()->back();
+        return view("frontend.contact");
+    }
 
 
-
-
+    public function aboutUs()
+    {
+          SEOMeta::setRobots('index, follow');
+              OpenGraph::addProperty('type', 'website');
+              JsonLd::setType('website');
+              SEOTools::setTitle('Contact');
+              SEOTools::setDescription(' About Us');
+              SEOMeta::addKeyword('About Us');
+             SEOTools::opengraph()->setUrl(url('/about'));
+             
+        return view("frontend.about");
+    }
    
 }

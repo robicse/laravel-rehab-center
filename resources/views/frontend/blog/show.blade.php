@@ -229,10 +229,14 @@
 
 @endsection
 @push('js')
-
 <script>
-    
-</script>
+    $(document).ready(function () {
+        $(".cke_editable img").each(function(i) {
+                $(this).addClass("img-fluid");
+                   
+            });
 
+    });
+</script>
 
 @endpush

@@ -11,6 +11,117 @@
     href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-brands-400.woff2' rel='preload'
     type='font/woff2' />
 <style>
+    
+        .blod-info {
+            display: flex
+        }
+        .blod-info li {
+            padding-right: 20px;
+            list-style: none;
+            color: #aaa;
+            display: flex;
+            align-items: center
+        }
+        .blod-info li svg {
+            margin-right: 5px
+        }
+        .blod-info li a {
+            color: #aaa
+        }
+        .blod-info li a:hover {
+            color: #00f
+        }
+        #social-links {
+            display: inline-block
+        }
+        #social-links ul {
+            margin-bottom: 0 !important;
+            padding-left: 0 !important;
+            margin-right: 10px
+        }
+        #social-links ul li {
+            list-style: none
+        }
+        #social-links ul li a span {
+            font-size: 22px;
+            color: #0d6efd
+        }
+        .cke_editable {
+            font-size: 16px;
+            line-height: 1.6;
+            word-wrap: break-word
+        }
+        blockquote {
+            font-style: italic;
+            font-family: Georgia, Times, "Times New Roman", serif;
+            padding: 2px 0;
+            border-style: solid;
+            border-color: #ccc;
+            border-width: 0
+        }
+        .cke_contents_ltr blockquote {
+            padding-left: 20px;
+            padding-right: 8px;
+            border-left-width: 5px
+        }
+        .cke_contents_rtl blockquote {
+            padding-left: 8px;
+            padding-right: 20px;
+            border-right-width: 5px
+        }
+        a {
+            color: #0782c1
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 400 !important;
+            line-height: 1.2 !important
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc
+        }
+        img.right {
+            border: 1px solid #ccc;
+            float: right;
+            margin-left: 15px;
+            padding: 5px
+        }
+        img.left {
+            border: 1px solid #ccc;
+            float: left;
+            margin-right: 15px;
+            padding: 5px
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            -moz-tab-size: 4;
+            tab-size: 4
+        }
+        .marker {
+            background-color: #ff0 !important
+        }
+        span[lang] {
+            font-style: italic
+        }
+        figure {
+            text-align: center;
+            border: solid 1px #ccc;
+            border-radius: 2px;
+            background: rgba(0, 0, 0, .05);
+            padding: 10px;
+            margin: 10px 20px;
+            display: inline-block
+        }
+        figure>figcaption {
+            text-align: center;
+            display: block
+        }
     .c-rating>label {
         color: #dad9dc;
         float: right;
@@ -110,7 +221,7 @@
                         @endforeach
                     </ul>
 
-                    <div class="booking-checkbox">
+                    <div class="booking-checkbox cke_editable">
                         {!! @$rehabDetails->description !!}
                         <hr>
                     </div>
@@ -319,7 +430,9 @@
                                     <img src="{{Storage::url(@$rehab->image)}}" />
                                     <figcaption>
                                         <h5>{{@$rehab->rehab_name}}</h5>
-                                        <p>{{@$rehab->rating}} Rating</p>
+                                        <p>@for ($i = 0; $i < round($rehab->rating); $i++)
+                                            <span class="icon-star text-warning"></span>
+                                            @endfor </p>
                                     </figcaption>
                                 </figure>
                             </a>
@@ -340,10 +453,10 @@
 
 <script>
     $(document).ready(function () {
-        lightbox.option({
-                    'resizeDuration': 200,
-                    'wrapAround': true
-                });
+        $(".cke_editable img").each(function(i) {
+                $(this).addClass("img-fluid");
+                   
+            });
 
     });
 </script>

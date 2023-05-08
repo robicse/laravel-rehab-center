@@ -9,7 +9,7 @@
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
-                    <a href="{{ url(Request::segment(1) .'/artisan/optimize/cache') }}">
+                    <a href="{{ url(Request::segment(1) .'/artisan/cacheall/cache') }}">
                     <div class="card  mb-4">
                         <div class="card-body p-3">
                             <div class="row">

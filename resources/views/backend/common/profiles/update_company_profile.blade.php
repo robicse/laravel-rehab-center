@@ -151,7 +151,7 @@
     @endif
     <div class="form-group">
         <label for="example-text-input" class="form-control-label">Company  (Logo)  [300*300]</label>
-        <input class="form-control" type="file" name="company_logo" accept="image/png, image/jpeg,image/webp">
+        <input class="form-control" type="file" name="company_logo" accept="image/png, image/jpeg,image/'|'|'|'">
     @if ($errors->has('company_logo')) <span class="text-danger alert">{{ $errors->first('company_logo') }}</span> @endif
 </div>
 @if($user==!Null)

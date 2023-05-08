@@ -52,7 +52,12 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{url('blog')}}">Blog</a>
                                     </li>
-                                    <li class="nav-item dropdown">
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url('rehab-center')}}">Rehab</a>
+                                    </li>
+                                    
+                                    {{-- <li class="nav-item dropdown">
                                         <a class="nav-link" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Rehab
                                     <span class="icon-arrow-down"></span>
@@ -62,7 +67,7 @@
                                             <a class="dropdown-item" href="{{url('rehab')}}">Add Rehab</a>
                                            
                                         </div>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item active">
                                         <a class="nav-link" href="{{url('about')}}">About</a>
                                     </li>
