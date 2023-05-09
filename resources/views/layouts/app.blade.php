@@ -90,11 +90,10 @@
     <footer class="main-block dark-bg">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8 col-sm-1">
                     <div class="copyright">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        @include('partial.laravelmessage')
                         <p>Copyright &copy; {{date('Y')}} Listing. All rights reserved |  {{@Helper::setting()->title}} is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="{{('/')}}" target="_blank">StarIT</a></p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         <ul>
                             <li><a href="{{@Helper::setting()->facebook}}"><span class="ti-facebook"></span></a></li>
                             <li><a href="{{@Helper::setting()->twitter}}"><span class="ti-twitter-alt"></span></a></li>
@@ -102,13 +101,23 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-md-4 col-sm-1 mt-2" style=" margin: 0 auto;width:65%">
+                    @if ($errors->has('email')) <span class="text-danger alert">{{ $errors->first('email') }}</span> @endif
+                    {!! Form::open(['route' => 'subscribetStore', 'method' => 'POST', 'class' => 'd-flex']) !!}
+                   
+                        {!! Form::email('email',null,array('class' =>'class="form-control','placeholder'=>'Enter Your Email Address','required','max'=>198,'style'=>'width:250px;height:50px' ))!!}
+                       
+
+                        <button type="submit" title="Subscribe Now" class="btn btn-sm btn-info"><span
+                                class="ti-email"></span> Now </button>
+                    
+                    </form>
+                </div>
+
             </div>
         </div>
     </footer>
     <!--//END FOOTER -->
-
-
-
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

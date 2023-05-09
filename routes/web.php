@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RehabController;
-use App\Http\Controllers\RehabReviewController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\OnChangeController;
+use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\RehabReviewController;
 
 
 Route::fallback(function () {
@@ -61,6 +62,12 @@ Route::post('contact', [HomeController::class,'contactStore']);
 Route::get('about', [HomeController::class,'aboutUs']);
 
 // static end
+
+
+## subscribe
+Route::post('subscribe', [SubscribeController::class, 'store'])->name('subscribetStore');
+
+
 
 
 

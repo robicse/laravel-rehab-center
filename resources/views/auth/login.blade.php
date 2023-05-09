@@ -58,7 +58,7 @@
                   </div>
                   <div class="mb-2 position-relative text-center">
                     <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
-                      <a href="{{url('password/reset')}}" class="text-primary font-weight-bold">Rest Password</a>  
+                     OR
                     </p>
                   </div>
                   

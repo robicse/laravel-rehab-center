@@ -176,9 +176,10 @@
                   </div>
                   </div>
                  
-             </div>
-            
- 
+           
+             <div class="fb-comments" data-href="{{Request::url()}}" data-width="100%" data-numposts="5"></div>
+             <span id="fb-root"></span>
+            </div>
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-5">
@@ -229,6 +230,10 @@
 
 @endsection
 @push('js')
+<script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0&appId=209201484717774&autoLogAppEvents=1"
+    nonce="iyZZ3sn3">
+</script>
 <script>
     $(document).ready(function () {
         $(".cke_editable img").each(function(i) {
