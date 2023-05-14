@@ -88,6 +88,7 @@
     <!-- Kanban scripts -->
     <script src="{{ asset('backend/assets/js/plugins/dragula/dragula.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/plugins/jkanban/jkanban.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/plugins/countup.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/plugins/chartjs.min.js') }}"></script>
 
     <script>

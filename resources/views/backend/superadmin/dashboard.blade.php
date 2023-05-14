@@ -14,7 +14,7 @@
                                         <div class="numbers">
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money
                                             </p>
-                                            <h5 class="font-weight-bolder">
+                                            <h5 class="font-weight-bolder" id="status1">
                                                 $53,000
                                             </h5>
                                             <p class="mb-0">
@@ -190,6 +190,59 @@
 @endsection
 @push('js')
   <script>
+
+
+ // Count To
+ if (document.getElementById('status1')) {
+      const countUp = new CountUp('status1', document.getElementById("status1").getAttribute("countTo"));
+      if (!countUp.error) {
+        countUp.start();
+      } else {
+        console.error(countUp.error);
+      }
+    }
+    if (document.getElementById('status2')) {
+      const countUp = new CountUp('status2', document.getElementById("status2").getAttribute("countTo"));
+      if (!countUp.error) {
+        countUp.start();
+      } else {
+        console.error(countUp.error);
+      }
+    }
+    if (document.getElementById('status3')) {
+      const countUp = new CountUp('status3', document.getElementById("status3").getAttribute("countTo"));
+      if (!countUp.error) {
+        countUp.start();
+      } else {
+        console.error(countUp.error);
+      }
+    }
+    if (document.getElementById('status4')) {
+      const countUp = new CountUp('status4', document.getElementById("status4").getAttribute("countTo"));
+      if (!countUp.error) {
+        countUp.start();
+      } else {
+        console.error(countUp.error);
+      }
+    }
+    if (document.getElementById('status5')) {
+      const countUp = new CountUp('status5', document.getElementById("status5").getAttribute("countTo"));
+      if (!countUp.error) {
+        countUp.start();
+      } else {
+        console.error(countUp.error);
+      }
+    }
+    if (document.getElementById('status6')) {
+      const countUp = new CountUp('status6', document.getElementById("status6").getAttribute("countTo"));
+      if (!countUp.error) {
+        countUp.start();
+      } else {
+        console.error(countUp.error);
+      }
+    }
+
+
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 
         var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

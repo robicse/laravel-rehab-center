@@ -191,7 +191,6 @@
                     <div class="row">
                         @foreach (Helper::frontBlog() as $blog)
                             
-              
                         <div class="col-md-4 featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="{{url('blog',@$blog->slug)}}">

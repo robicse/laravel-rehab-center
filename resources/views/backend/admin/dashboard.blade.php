@@ -15,7 +15,8 @@
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money
                                             </p>
                                             <h5 class="font-weight-bolder">
-                                                $53,000
+                                                <span class="small">$ </span><span id="status1" countTo="23980"></span>
+                                               
                                             </h5>
                                             <p class="mb-0">
                                                 <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -190,6 +191,17 @@
 @endsection
 @push('js')
   <script>
+	
+     // Count To
+ if (document.getElementById('status1')) {
+      const countUp = new CountUp('status1', document.getElementById("status1").getAttribute("countTo"));
+      if (!countUp.error) {
+        countUp.start();
+      } else {
+        console.error(countUp.error);
+      }
+    }
+   
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 
         var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
