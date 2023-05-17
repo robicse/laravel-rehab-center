@@ -26,10 +26,10 @@ class UserController extends Controller
             return $next($request);
         });
 
-        $this->middleware('permission:users-list', ['only' => ['index', 'show']]);
-        $this->middleware('permission:users-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:users-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:users-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
@@ -37,7 +37,7 @@ class UserController extends Controller
         try {
             $User = $this->User;
             if ($User->user_type == 'Admin') {
-                $data = User::wherecreated_by_user_id($User->id)->latest();
+                $data = User::whereNot('user_type','=','Super Admin')->wherecreated_by_user_id($User->id)->latest();
             } else {
                 $data = User::whereNot('user_type','=','Super Admin')->latest();
             }
@@ -47,7 +47,7 @@ class UserController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function ($data) use ($User) {
                         $btn = '';
-                         if ($User->can('users-edit')) {
+                         if ($User->can('user-edit')) {
                         $btn = '<a href=' . route(request()->segment(1) . '.users.edit', (encrypt($data->id))) . ' class="btn btn-info btn-sm waves-effect" style="margin-left: 5px"><i class="fa fa-edit"></i></a>';
                          }
                         $btn .= '</span>';

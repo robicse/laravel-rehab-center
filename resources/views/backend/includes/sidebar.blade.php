@@ -23,10 +23,17 @@
                 <div class="collapse {{Request::is(Request::segment(1) .'/users*') ? 'show' : ''}} {{Request::is(Request::segment(1) .'/roles*') ? 'show' : ''}} {{Request::is(Request::segment(1) .'/databases*') ? 'show' : ''}}" id="dashboardsExamples">
                     <ul class="nav ms-4">
                         
-                        <li class="nav-item {{Request::is(Request::segment(1) .'/roles*') ? 'active' : ''}}">
-                            <a class="nav-link " href="{{route(Request::segment(1) . '.roles.index')}}">
+                        <li class="nav-item">
+                            <a class="nav-link {{Request::is(Request::segment(1) .'/roles*') ? 'active' : ''}}" href="{{route(Request::segment(1) . '.roles.index')}}">
                                 <span class="sidenav-mini-icon"> S </span>
                                 <span class="sidenav-normal">Roles  </span>
+                            </a>
+                        </li>
+                       
+                        <li class="nav-item">
+                            <a class="nav-link {{Request::is(Request::segment(1) .'/users*') ? 'active' : ''}}" href="{{route(Request::segment(1) . '.users.index')}}">
+                                <span class="sidenav-mini-icon"> U </span>
+                                <span class="sidenav-normal">User  </span>
                             </a>
                         </li>
                        

@@ -12,8 +12,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $users=User::get(['id','status']);
      
-        return view('backend.writer.dashboard');
+        return view('backend.writer.dashboard',compact('users'));
     }
 }
 
