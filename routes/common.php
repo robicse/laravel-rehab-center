@@ -10,7 +10,7 @@ use App\Http\Controllers\Common\CategoryController;
 use App\Http\Controllers\Common\RehabController;
 use App\Http\Controllers\Common\RehabReviewController;
 use App\Http\Controllers\Common\CommandController;
-
+use App\Http\Controllers\Common\SubscribeController;
 
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
@@ -53,3 +53,6 @@ Route::delete('delete-rehab-review/{id}', [RehabReviewController::class, 'destro
 Route::get('artisan-command',[CommandController::class,'index'])->name('artisanCommand');
 Route::get('artisan/{command}/{param}',[CommandController::class,'artisan']);
 
+   //subscribe
+   Route::resource('subscribes', SubscribeController::class);
+   Route::post('subscribe-status', [SubscribeController::class, 'updateStatus'])->name('subscribeStatus');

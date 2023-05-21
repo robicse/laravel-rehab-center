@@ -12,4 +12,8 @@ class RehabReview extends Model
         'created_at' =>  'datetime:d M Y H:m',
         
     ];
+
+    public function rehabcenter(){
+        return $this->belongsTo(RehabCenter::class,'rehab_center');
+    }
 }

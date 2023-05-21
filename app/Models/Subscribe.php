@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscribe extends Model
 {
-    use HasFactory;
+    use HasFactory;  
+    protected $casts = [
+        'created_at' =>  'datetime:dS F Y, H:i a'
+         
+     ];
 }

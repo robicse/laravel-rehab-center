@@ -205,7 +205,7 @@
   <script>
 	
     $(document).ready(function () {
-        for (let i = 0; i <5; i++) {
+        for (let i = 0; i <3; i++) {
             if (document.getElementById('counter'+i)) {
       const countUp = new CountUp('counter'+i, document.getElementById('counter'+i).getAttribute("countTo"));
       if (!countUp.error) {

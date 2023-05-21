@@ -44,7 +44,7 @@ class RehabController extends Controller
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($data) use ($User) {
-                        $btn = '<a href=' . route(request()->segment(1) . '.rehab-lists.edit', (encrypt($data->id))) . ' class="btn btn-info btn-sm waves-effect" style="margin-left: 5px"><i class="fa fa-edit"></i></a>';
+                        $btn = '<a href=' . route(request()->segment(1) . '.rehab-lists.edit', (encrypt($data->id))) . ' class="btn btn-info btn-sm waves-effect" style="margin-left: 5px"><i class="fa fa-edit"></i></a> <a class="btn btn-success btn-sm waves-effect" style="margin-left: 5px" title="Click for View" target="_blank" href="' . url('rehab-center', $data->slug) . '"><i class="fa fa-link"></i></a>';
                         return $btn;
                     })
                     ->addColumn('status', function ($data) {

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('comment',5000)->nullable();
             $table->Integer('admin_seen')->default(0);
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

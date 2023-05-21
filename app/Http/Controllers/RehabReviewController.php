@@ -5,6 +5,7 @@ use App\Models\RehabReview;
 use Illuminate\Http\Request;
 use App\Helpers\ErrorTryCatch;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class RehabReviewController extends Controller
@@ -37,6 +38,7 @@ class RehabReviewController extends Controller
            
             $review = new RehabReview();
             $review->rehab_center = $request->rehab_id;
+            $review->user_id = Auth::id()?:'Null';
             $review->name = $request->name;
             $review->phone = $request->phone;
             $review->rating = $request->rating;

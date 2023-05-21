@@ -65,7 +65,7 @@ class BlogController extends Controller
                         }
                     })
                     ->addColumn('image', function ($data) {
-                        return '<a title="Click for View" data-lightbox="roadtrip" href="' . asset($data->image) . '"><img id="demo-test-gallery" class="border-radius-lg shadow demo-gallery" src="' . asset($data->image) . '" height="40px" width="40px"/>';
+                        return '<a title="Click for View" data-lightbox="roadtrip" href="' . asset('blog',$data->image) . '"><img id="demo-test-gallery" class="border-radius-lg shadow demo-gallery" src="' . asset($data->image) . '" height="40px" width="40px"/>';
                     })
                     ->addColumn('link', function ($data) {
                         return '<a title="Click for View" target="_blank" href="' . url('blog', $data->slug) . '"><i class="fa fa-link"></i></a>';

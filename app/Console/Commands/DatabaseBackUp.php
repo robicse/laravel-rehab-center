@@ -49,12 +49,20 @@ class DatabaseBackUp extends Command
         $output  = NULL;
 
         exec($command, $output, $returnVar);
-
+        $filepath=public_path()."/storage/mysqlbackup/backup-". Carbon::now()->format('Y-m-d') . ".sql";
+       $info=Databackup::wherebackup_date(date('Y-m-d'))->first();
+       if($info){
+        $info->file_size=round(filesize($filepath) / 1024 / 1024, 1);
+        $info->save();
+        $this->info('Database Backup Done');
+       }else{
         $databackup=new Databackup();
         $databackup->backup_date=date('Y-m-d');
-        $databackup->file_path=public_path()."/storage/mysqlbackup/backup-". Carbon::now()->format('Y-m-d') . ".sql";
-        $databackup->file_size=round(filesize($databackup->file_path) / 1024 / 1024, 1);
+        $databackup->file_path=$filepath;
+        $databackup->file_size=round(filesize($filepath) / 1024 / 1024, 1);
         $databackup->save();
          $this->info('Database Backup Done');
+      
+      }
     }
 }

@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Categories')
+@section('title', 'Subcribe')
 @push('css')
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="{{ asset('lightbox/css/lightbox.css') }}" rel="stylesheet" />
@@ -13,15 +13,15 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div>
-                                <h5 class="mb-0">All category</h5>
+                                <h5 class="mb-0">All Subscribe</h5>
                                 <p class="text-sm mb-0">
-                                    A Home page layout data.
+                                    A Subscribe page layout data.
                                 </p>
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
-                                    <a href="{{ route(Request::segment(1) . '.categories.create') }}"
-                                        class="btn bg-gradient-primary btn-sm mb-0">+&nbsp; New Category</a>
+                                    <a href="{{ route(Request::segment(1) . '.subscribes.create') }}"
+                                        class="btn bg-gradient-primary btn-sm mb-0">+&nbsp; New Subscriber</a>
 
                                 </div>
                             </div>
@@ -32,10 +32,9 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Sl</th>
-                                            <th>Name</th>
-                                            <th>Photo</th>
-                                            <th>Status</th>
-                                            {{-- <th>Link</th> --}}
+                                            <th>Date</th>
+                                            <th>Email</th>
+                                           <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -44,10 +43,9 @@
                                     <tfoot>
                                         <tr>
                                             <th>Sl</th>
-                                            <th>Name</th>
-                                           <th>Photo</th>
-                                            <th>Status</th>
-                                            {{-- <th>Link</th> --}}
+                                            <th>Date</th>
+                                            <th>Email</th>
+                                           <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -87,27 +85,25 @@
                     }
                 },
                
-                ajax: "{{ route(Request::segment(1) . '.categories.index') }}",
+                ajax: "{{ route(Request::segment(1) . '.subscribes.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         orderable: false,
                         searchable: false
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'created_at',
+                        name: 'created_at'
                     },
                    
                     {
-                        data: 'image',
-                        name: 'image'
+                        data: 'email',
+                        name: 'email'
                     },
                     {
                         data: 'status'
                     },
-                    // {
-                    //     data: 'link'
-                    // },
+                   
                     {
                         data: 'action',
                         name: 'action',
@@ -124,14 +120,14 @@
             } else {
                 var status = 0;
             }
-            $.post("{{ route(Request::segment(1) . '.categoryStatus') }}", {
+            $.post("{{ route(Request::segment(1) . '.subscribeStatus') }}", {
                     _token: '{{ csrf_token() }}',
                     id: el.value,
                     status: status
                 },
                 function(data) {
                     if (data == 1) {
-                        toastr.success('success', 'Category Status updated successfully');
+                        toastr.success('success', 'Subscribe Status updated successfully');
                     } else {
                         toastr.danger('danger', 'Something went wrong');
                     }

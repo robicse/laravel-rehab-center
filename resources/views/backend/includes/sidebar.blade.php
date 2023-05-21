@@ -50,7 +50,7 @@
                 <a data-bs-toggle="collapse" href="#rehabCenter" class="nav-link  {{Request::is(Request::segment(1) .'/rehab-lists*') ? 'show' : ''}}"
                     aria-controls="rehabCenter" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
-                        <i class="ni ni-shop text-primary text-sm opacity-10"></i>
+                        <i class="ni ni-ungroup text-warning text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">ReHub Center <b class="badge badge-danger badge-sm">{{Helper::rehabadmnSeen()}}</b> </span>
                 </a>
@@ -78,7 +78,7 @@
                     href="{{route(Request::segment(1) . '.blogs.index')}}">
                     <div
                         class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
+                        <i class="ni ni-hat-3 text-danger text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Blogs  </span>
                 </a>
@@ -88,7 +88,7 @@
                     href="{{route(Request::segment(1) . '.categories.index')}}">
                     <div
                         class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
+                        <i class="ni ni-money-coins text-danger text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Category  </span>
                 </a>
@@ -99,7 +99,7 @@
                     href="{{route(Request::segment(1) . '.sliders.index')}}">
                     <div
                         class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
+                        <i class="ni ni-satisfied text-danger text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Slider  </span>
                 </a>
@@ -110,7 +110,7 @@
                     href="{{route(Request::segment(1) . '.setting.index')}}">
                     <div
                         class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
+                        <i class="ni ni-spaceship text-danger text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Setting </span>
                 </a>
@@ -126,8 +126,18 @@
                     <span class="nav-link-text ms-1">File Manager  </span>
                 </a>
             </li> 
+            <li class="nav-item">
+                <a class="nav-link {{Request::is(Request::segment(1) .'/subscribes*') ? 'active' : ''}}"
+                    href="{{route(Request::segment(1) . '.subscribes.index')}}">
+                    <div
+                        class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Subscribe </span>
+                </a>
+            </li> 
             
-           
+            
         </ul>
     </div>
 
