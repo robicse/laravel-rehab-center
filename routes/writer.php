@@ -6,6 +6,7 @@ use App\Http\Controllers\Writer\RehabController;
 use App\Http\Controllers\Writer\DashboardController;
 use App\Http\Controllers\Writer\RehabReviewController;
 use App\Http\Controllers\Writer\UserController;
+use App\Http\Controllers\Writer\NotificationController;
 
 
 Route::group(['as'=>'writer.','prefix' =>'writer', 'middleware' => ['auth','writer']], function(){
@@ -19,5 +20,8 @@ Route::resource('rehab-review-lists',RehabReviewController::class);
 
 ##rehab review start 
      Route::resource('writer-profile',UserController::class);
+
+         //notification
+    Route::resource('notifications', NotificationController::class);
 });
 

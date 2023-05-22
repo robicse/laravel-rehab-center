@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('image')->default('not-found.'|'|'|'');
+            $table->string('image')->default('not-found.webp');
             $table->integer('refer')->nullable();
             $table->integer('zip_code')->nullable();
             $table->integer('otp')->nullable();

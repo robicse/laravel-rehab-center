@@ -40,7 +40,7 @@ class CommandController extends Controller
             Toastr::info("Your command $command  successfully done", "Success");
             return back();
         } elseif ($param == 'down') {
-            Artisan::call('down');
+            Artisan::call('down --secret="zahidul1994"');
             Toastr::info("Your command $command  successfully done", "Success");
             return back();
         }

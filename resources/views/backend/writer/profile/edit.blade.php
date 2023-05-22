@@ -48,21 +48,17 @@
                             </div>
                          
                             <div class="form-group">
-                                        <label for="status" class="form-control-label"> Status * </label>
-                                        {!! Form::select('status', [1 => 'Active', 0 => 'Inactive'], null, [
-                                            'id' => 'status',
-                                            'class' => 'form-control select2',
+                                        <label for="zip_code" class="form-control-label"> Zip Code * </label>
+                                        {!! Form::text('zip_code',  null, ['id' => 'zip_code','class' => 'form-control',
                                         ]) !!}
-                                        @if ($errors->has('status'))
-                                            <span class="text-danger alert">{{ $errors->first('status') }}</span>
+                                        @if ($errors->has('zip_code'))
+                                            <span class="text-danger alert">{{ $errors->first('zip_code') }}</span>
                                         @endif
-                                    </div>
+                             </div>
                                
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
-                        
-                     
 
                                 {!! Form::close() !!}
                             </div>

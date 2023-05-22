@@ -1,17 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Writer;
+use App\Models\User;
 use App\Models\RehabCenter;
 use App\Models\RehabSlider;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Helpers\ErrorTryCatch;
 use Sohibd\Laravelslug\Generate;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\Usernotification;
 use Illuminate\Support\Facades\Storage;
 
 class RehabController extends Controller
@@ -158,6 +160,11 @@ class RehabController extends Controller
                     $slider->save();
                 }
             }
+            $data = [
+                'message' => 'Hi ' . Auth::user()->name . '  Just Create A ' .$request->rehab_name ,
+
+            ];
+            User::find(1)->notify(new Usernotification($data));
             DB::commit();
             Toastr::success("Rehab Center  Created Successfully", "Success");
             return redirect()->route(request()->segment(1) . '.rehab-lists.index');
@@ -285,7 +292,11 @@ class RehabController extends Controller
                     $slider->save();
                 }
             }
-            
+            $data = [
+                'message' => 'Hi ' . Auth::user()->name . '  Just Update  ' .$request->rehab_name ,
+
+            ];
+            User::find(1)->notify(new Usernotification($data));
             DB::commit();
             Toastr::success("Rehab Center Created Successfully", "Success");
             return redirect()->route(request()->segment(1) . '.rehab-lists.index');

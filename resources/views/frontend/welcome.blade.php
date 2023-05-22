@@ -5,7 +5,7 @@
 @section('content')
     <!-- SLIDER -->
 
-    <section class="slider d-flex align-items-center" style="background-image: url('{{@Helper::homeSlider()->image}}');" >
+    <section class="slider d-flex align-items-center" style="background-image: url('{{@Helper::homeSlider()->image}}'); background-size: cover" >
        
         <div class="container">
             <div class="row d-flex justify-content-center">

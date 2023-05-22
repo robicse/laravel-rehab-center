@@ -1,17 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Common;
+use App\Models\User;
 use App\Models\RehabCenter;
 use App\Models\RehabSlider;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Helpers\ErrorTryCatch;
 use Sohibd\Laravelslug\Generate;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\Usernotification;
 use Illuminate\Support\Facades\Storage;
 
 class RehabController extends Controller
@@ -155,6 +157,7 @@ class RehabController extends Controller
                     $slider->save();
                 }
             }
+            
             DB::commit();
             Toastr::success("Rehab Center  Created Successfully", "Success");
             return redirect()->route(request()->segment(1) . '.rehab-lists.index');
@@ -181,6 +184,13 @@ class RehabController extends Controller
     {
         try {
             $data = RehabCenter::with('rehabslider')->findOrFail(decrypt($id));
+            if($data->admin_seen==0){
+                $message = [
+                    'message' => 'Hi ' . Auth::user()->name . ' . Just Seen Your  ' .$data->rehab_name ,
+    
+                ];
+                User::find($data->user_id)->notify(new Usernotification($message));
+            }
             $data->admin_seen=1;
             $data->save();
             $jsonInsuranceAccepts = json_decode($data->insurance_accepts); {
@@ -312,6 +322,20 @@ class RehabController extends Controller
     public function updateStatus(Request $request)
     {
         $rehab = RehabCenter::findOrFail($request->id);
+        if($rehab->admin_seen==0){
+            $data = [
+                'message' => 'Hi ' . Auth::user()->name . ' . Just Seen Your  ' .$rehab->rehab_name ,
+
+            ];
+            User::find($rehab->user_id)->notify(new Usernotification($data));
+        }
+        if($rehab->status==0){
+            $data = [
+                'message' => 'Hi ' . Auth::user()->name . ' . Just Approve Your  ' .$rehab->rehab_name ,
+
+            ];
+            User::find($rehab->user_id)->notify(new Usernotification($data));
+        }
         $rehab->status = $request->status;
         $rehab->admin_seen = 1;
         if ($rehab->save()) {

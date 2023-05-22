@@ -18,7 +18,7 @@
                         <div class="row">
                         @include('partial.formerror')
                         {!! Form::model($user, [
-                            'route' => [Request::segment(1) . '.updateCompanyProfile'],
+                            'route' => [Request::segment(1) . '.profiles.update'],
                             'method' => 'POST',
                             'files' => true,
                         ]) !!}

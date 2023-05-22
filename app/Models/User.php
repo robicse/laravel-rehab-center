@@ -17,6 +17,7 @@ class User extends Authenticatable
         'phone',
         'user_type',
         'otp',
+        'zip_code',
         'ip_address',
         'email',
         'photo',

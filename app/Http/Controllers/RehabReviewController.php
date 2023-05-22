@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use App\Models\RehabReview;
 use Illuminate\Http\Request;
 use App\Helpers\ErrorTryCatch;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\Usernotification;
 use Illuminate\Support\Facades\Session;
 
 class RehabReviewController extends Controller
@@ -46,6 +48,11 @@ class RehabReviewController extends Controller
             $review->review_title = $request->review_title;
             $review->comment = $request->comment;
             $review->save();
+            $data = [
+                'message' => 'Hi ' . $request->name . '  Just Submit A review  ' .$request->review_title ,
+
+            ];
+            User::find(1)->notify(new Usernotification($data));
             DB::commit();
           Session::flash('message', 'Review Sent Successfully!');
         return redirect()->back();

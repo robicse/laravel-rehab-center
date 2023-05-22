@@ -11,6 +11,7 @@ use App\Http\Controllers\Common\RehabController;
 use App\Http\Controllers\Common\RehabReviewController;
 use App\Http\Controllers\Common\CommandController;
 use App\Http\Controllers\Common\SubscribeController;
+use App\Http\Controllers\Common\NotificationController;
 
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
@@ -56,3 +57,7 @@ Route::get('artisan/{command}/{param}',[CommandController::class,'artisan']);
    //subscribe
    Route::resource('subscribes', SubscribeController::class);
    Route::post('subscribe-status', [SubscribeController::class, 'updateStatus'])->name('subscribeStatus');
+
+    //notification
+    Route::resource('notifications', NotificationController::class);
+   

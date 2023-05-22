@@ -29,16 +29,19 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <td> <b>Name </b>:  {{Auth::user()->name}}</td>
+                                        <td> <b>Name </b>:  {{@Auth::user()->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td> <b>Phone </b>:  {{Auth::user()->phone}}</td>
+                                        <td> <b>Phone </b>:  {{@Auth::user()->phone}}</td>
                                     </tr>
                                     <tr>
-                                        <td> <b>Email </b>:  {{Auth::user()->email}}</td>
+                                        <td> <b>Email </b>:  {{@Auth::user()->email}}</td>
                                     </tr>
                                     <tr>
-                                        <td> <b>UserName </b>:  {{Auth::user()->username}}</td>
+                                        <td> <b>User Name </b>:  {{@Auth::user()->username}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <b>Zip Code </b>:  {{@Auth::user()->zip_code}}</td>
                                     </tr>
                                 </tbody>
                                 

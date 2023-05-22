@@ -56,7 +56,7 @@ return [
             'valid_mime'   => [
                 'image/jpeg',
                 'image/pjpeg',
-                'image/'|'|'|'',
+                'image/webp',
                 'image/png',
                 'image/gif',
                 'application/pdf',
@@ -76,7 +76,7 @@ return [
                 'image/pjpeg',
                 'image/png',
                 'image/gif',
-                'image/'|'|'|'',
+                'image/webp',
             ],
         ],
     ],

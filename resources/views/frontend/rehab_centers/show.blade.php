@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('css')
-
+<link href="{{ asset('lightbox/css/lightbox.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -11,7 +11,11 @@
     href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-brands-400.woff2' rel='preload'
     type='font/woff2' />
 <style>
-    
+    @media (min-width:320px)  { 
+        .dsm{
+            margin-top: 50px;
+        }
+     }
         .blod-info {
             display: flex
         }
@@ -163,13 +167,12 @@
 @section('content')
 
 <!--============================= RESERVE A SEAT =============================-->
-<section class="main-block">
+<section class="main-block" style="padding-bottom:5px">
     <div class="container">
-
         <div class="row">
             <div class="col-md-6">
                 <p><span></span></p>
-                <h5>{{@$rehabDetails->rehab_name}}</h5>
+                <h5 class="dsm">{{@$rehabDetails->rehab_name}}</h5>
                 <p class="reserve-description">{{@$rehabDetails->address}}</p>
             </div>
             <div class="col-md-6">
@@ -211,7 +214,7 @@
                             </a>
                         </li>
                         @foreach (@$rehabDetails->rehabslider as $imgslider)
-                        <li style="list-style: none">
+                        <li style="list-style: none; display: inline-block">
                             <a data-lightbox="roadtrip" href="{{Storage::url($imgslider->slider_image)}}">
                                 <img style="width:80px;height:80px; margin-top:10px"
                                     src="{{Storage::url($imgslider->slider_image)}}" alt="slider image"
@@ -450,8 +453,12 @@
 
 @endsection
 @push('js')
-
+<script src="{{ asset('lightbox/js/lightbox.js') }}"></script> 
 <script>
+     lightbox.option({
+                    'resizeDuration': 200,
+                    'wrapAround': true
+                });
     $(document).ready(function () {
         $(".cke_editable img").each(function(i) {
                 $(this).addClass("img-fluid");
