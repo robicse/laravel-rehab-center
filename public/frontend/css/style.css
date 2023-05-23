@@ -157,10 +157,10 @@ p {
 
 .slider {
  
-  min-height: 800px; }
+  min-height: 500px; }
   @media (max-width: 992px) {
     .slider {
-      min-height: 700px; } }
+      min-height: 400px; } }
 
 .btn-outline-light {
   padding: 10px 16px; }

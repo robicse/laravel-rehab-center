@@ -112,7 +112,7 @@
     <!--============================= FIND PLACES =============================-->
     <section class="main-block">
         
-        <div class="container">
+        <div class="container-fluid">
             <nav aria-label="breadcrumb" style="font-size:12px">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container-fluid">
                
                 <div class="row ng-scope">
                     

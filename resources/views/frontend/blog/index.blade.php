@@ -6,7 +6,7 @@
 @section('content')
 <section class="main-block">
         
-        <div class="container">
+        <div class="container-fluid">
             <nav aria-label="breadcrumb" style="font-size:12px">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
@@ -32,7 +32,7 @@
                     <div class="row">
                         @if($LatestBlog->isNotEmpty())
                         @foreach ($LatestBlog as $blog)
-                        <div class="col-md-4 featured-responsive">
+                        <div class="col-md-3 featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="{{url('blog',@$blog->slug)}}">
                                     <img src="{{ asset(@$blog->image)}}" alt="{{Str::words(@$blog->title,8)}}" class="img-fluid img-thumbnail rounded">

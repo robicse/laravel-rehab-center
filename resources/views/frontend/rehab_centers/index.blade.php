@@ -111,7 +111,6 @@
  
     <!--============================= FIND PLACES =============================-->
     <section class="main-block">
-        
         <div class="container">
             <nav aria-label="breadcrumb" style="font-size:12px">
                 <ol class="breadcrumb">
@@ -127,7 +126,7 @@
                 </div>
                 
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <form class="d-flex" action="{{url('/rehab-center')}}" method="get" role="search">
                     <input class="form-control" name="q" required type="search" placeholder="Search By Rehab Center Name" aria-label="Search">
                     <button class="btn btn-primary" aria-label="Left Align" type="submit"><span class="icon-arrow-right"></span>Search</button>
@@ -180,7 +179,7 @@
                 @foreach (Helper::frontBlog() as $blog)
                     
       
-                <div class="col-md-4 featured-responsive">
+                <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="{{url('blog',@$blog->slug)}}">
                             <img src="{{ asset(@$blog->image)}}" alt="{{Str::words(@$blog->title,8)}}" class="img-fluid img-thumbnail rounded">

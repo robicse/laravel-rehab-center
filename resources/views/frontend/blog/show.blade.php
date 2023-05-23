@@ -180,7 +180,7 @@
              <div class="fb-comments" data-href="{{Request::url()}}" data-width="100%" data-numposts="5"></div>
              <span id="fb-root"></span>
             </div>
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row justify-content-center">
                         <div class="col-md-5">
                             <div class="styled-heading">
@@ -191,7 +191,7 @@
                     <div class="row">
                         @foreach (Helper::frontBlog() as $blog)
                             
-                        <div class="col-md-4 featured-responsive">
+                        <div class="col-md-3 featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="{{url('blog',@$blog->slug)}}">
                                     <img src="{{ asset(@$blog->image)}}" alt="{{Str::words(@$blog->title,8)}}" class="img-fluid img-thumbnail rounded">

@@ -78,12 +78,12 @@ class Helper
 
     public static function frontRehabCenter()
     {
-        return RehabCenter::wherestatus(1)->latest()->take(9)->get(['rehab_name', 'image', 'rating', 'slug', 'created_at','short_description']);
+        return RehabCenter::wherestatus(1)->latest()->take(12)->get(['rehab_name', 'image', 'rating', 'slug', 'created_at','short_description']);
     }
 
     public static function frontBlog()
     {
-        return Blog::wherestatus(1)->latest()->take(6)->get(['title', 'image', 'short_description', 'slug', 'category', 'created_at']);
+        return Blog::wherestatus(1)->latest()->take(8)->get(['title', 'image', 'short_description', 'slug', 'category', 'created_at']);
     }
     public static function customImageAsset($value)
     {

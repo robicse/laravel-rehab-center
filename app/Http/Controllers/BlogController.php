@@ -21,10 +21,10 @@ class BlogController extends Controller
        SEOTools::opengraph()->setUrl(url('/blog'));
        $id=$request->q;
        if($id){
-            $LatestBlog=Blog::wherestatus(1)->where('title','LIKE','%'.urldecode($id).'%')->select('slug','image','title','created_at','short_description')->latest()->paginate(18);
+            $LatestBlog=Blog::wherestatus(1)->where('title','LIKE','%'.urldecode($id).'%')->select('slug','image','title','created_at','short_description')->latest()->paginate(20);
             }
        else{
-          $LatestBlog=Blog::wherestatus(1)->select('slug','image','title','created_at','short_description')->latest()->paginate(18);
+          $LatestBlog=Blog::wherestatus(1)->select('slug','image','title','created_at','short_description')->latest()->paginate(20);
        }
       
        

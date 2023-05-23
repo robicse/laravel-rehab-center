@@ -197,11 +197,11 @@
 <!--//END RESERVE A SEAT -->
 <!--============================= BOOKING DETAILS =============================-->
 <section class="light-bg booking-details_wrap">
-    <div class="container">
+    <div class="container-fluid">
         @include('partial.laravelmessage')
         <div class="row">
          
-            <div class="col-md-8 responsive-wrap">
+            <div class="col-md-8">
                 <div class="booking-checkbox_wrap">
 
                     <!-- Images -->
@@ -210,7 +210,7 @@
                         <li style="list-style: none">
                             <a data-lightbox="roadtrip" href="{{Storage::url($rehabDetails->image)}}">
                                 <img src="{{Storage::url($rehabDetails->image)}}" alt="{{$rehabDetails->rehab_name}}"
-                                    class="img-fluid" data-lightbox="roadtrip" />
+                                    class="img-fluid w-100" data-lightbox="roadtrip" />
                             </a>
                         </li>
                         @foreach (@$rehabDetails->rehabslider as $imgslider)

@@ -4,18 +4,16 @@
 @endpush
 @section('content')
     <!-- SLIDER -->
-
-    <section class="slider d-flex align-items-center" style="background-image: url('{{@Helper::homeSlider()->image}}'); background-size: cover" >
-       
-        <div class="container">
+<section class="slider d-flex align-items-center" style="background-image: url('{{@Helper::homeSlider()->image}}'); background-size: cover;background-position:center" >
+<div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-12">
                     <div class="slider-title_box">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="slider-content_wrap">
-                                    <h1>{{@Helper::homeSlider()->short_description}}</h1>
-                                    <h5>{{@Helper::homeSlider()->long_description}}</h5>
+                                    <h4>{{@Helper::homeSlider()->short_description}}</h4>
+                                    <h6>{{@Helper::homeSlider()->long_description}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -39,18 +37,18 @@
     <!--// SLIDER -->
     <!--//END HEADER -->
     <!--============================= FIND PLACES =============================-->
-    <section class="main-block">
-        <div class="container">
+    <section  style="padding-top:15px">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <div class="styled-heading">
-                        <h3>Recent Listing Rehab Center </h3>
+                        <h3 style="padding-buttom:">Recent Listing Rehab Center </h3>
                     </div>
                 </div>
             </div>
             <div class="row">
                @foreach (Helper::frontRehabCenter() as $rehabcenter)
-                   <div class="col-md-4">
+                   <div class="col-md-3">
                     <div class="row find-img-align">
                         <div class="col-md-12">
                             <div class="find-place-img_wrap">
@@ -78,8 +76,8 @@
     </section>
     <!--//END FIND PLACES -->
     <!--============================= FEATURED PLACES =============================-->
-    <section class="main-block light-bg">
-        <div class="container">
+    <section style="padding-top:15px">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <div class="styled-heading">
@@ -89,9 +87,8 @@
             </div>
             <div class="row">
                 @foreach (Helper::frontBlog() as $blog)
-                    
       
-                <div class="col-md-4 featured-responsive">
+                <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="{{url('blog',@$blog->slug)}}">
                             <img src="{{ asset(@$blog->image)}}" alt="{{Str::words(@$blog->title,8)}}" class="img-fluid img-thumbnail rounded">
@@ -124,8 +121,8 @@
     </section>
     <!--//END FEATURED PLACES -->
     <!--============================= CATEGORIES =============================-->
-    <section class="main-block">
-        <div class="container">
+    <section style="padding-top:15px">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <div class="styled-heading">
