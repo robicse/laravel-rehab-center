@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Zipcode extends Model
 {
-    use SoftDeletes;
+    
     use HasFactory;
 }

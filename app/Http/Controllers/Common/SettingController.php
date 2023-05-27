@@ -31,10 +31,6 @@ class SettingController extends Controller
             return $next($request);
         });
 
-        // $this->middleware('permission:slides-list', ['only' => ['index', 'show']]);
-        // $this->middleware('permission:slides-create', ['only' => ['create', 'store']]);
-        // $this->middleware('permission:slides-edit', ['only' => ['edit', 'update']]);
-        // $this->middleware('permission:slides-delete', ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
@@ -56,21 +52,7 @@ class SettingController extends Controller
         }
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Setting $setting)
-    {
-        //
-    }
-
+  
     public function edit($id)
     {
          try {

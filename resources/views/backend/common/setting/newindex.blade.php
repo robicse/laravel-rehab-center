@@ -42,6 +42,20 @@
                             <span class="text-sm">Delete Account</span>
                         </a>
                     </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-body d-flex align-items-center" href="{{ route(Request::segment(1) . '.artisanCommand') }}">
+                            <i class="ni ni-settings-gear-65 me-2 text-dark opacity-6"></i>
+                            <span class="text-sm">Command</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-body d-flex align-items-center" href="{{ route(Request::segment(1) . '.smtpIndex') }}">
+                            <i class="ni ni-settings-gear-65 me-2 text-dark opacity-6"></i>
+                            <span class="text-sm">SMTP</span>
+                        </a>
+                    </li>
+                    
+
                 </ul>
             </div>
         </div>
@@ -314,6 +328,7 @@
 @push('js')
 <script>
     $('#deleteAccount').click(function (e) { 
+        alert();
             if (!confirm('Are You Sure To Delete Your Account ?')) return;
             '{{User::find(Auth::id())->delete()}}';
             toastr.success('success', 'Delete Your Account successfully');

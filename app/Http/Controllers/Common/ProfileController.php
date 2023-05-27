@@ -53,6 +53,7 @@ class ProfileController extends Controller
      */
     public function profilesUpdate(Request $request)
     {
+       
         
         $this->validate($request, [
             'name' => 'required',
@@ -94,7 +95,6 @@ class ProfileController extends Controller
                     $profile->twitter_link = $request->twitter_link;
                     $profile->linkedin_link = $request->linkedin_link;
                    $profile->description = $request->description;
-                    
                     $profile->save();
                     Toastr::success("Profile Update Successfully", "Success");
                     return redirect()->route(request()->segment(1) . '.setting.index');
