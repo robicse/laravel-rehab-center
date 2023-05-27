@@ -114,9 +114,9 @@
         </div>
         <div class="form-group">
             <label for="facebook_link" class="form-control-label">Facebook Link </label>
-            {!! Form::text('facebook_link', null, ['id' => 'facebook_link','class' => "form-control"
+           
+       @if ($errors->has('facebook_link')) <span class="text-danger alert">{{ $errors->first('facebook_link') }}</span> @endif {!! Form::text('facebook_link', null, ['id' => 'facebook_link','class' => "form-control"
             ]) !!}
-       @if ($errors->has('facebook_link')) <span class="text-danger alert">{{ $errors->first('facebook_link') }}</span> @endif
         </div>
         
         <div class="form-group">

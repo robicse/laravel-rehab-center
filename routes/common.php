@@ -12,6 +12,7 @@ use App\Http\Controllers\Common\RehabReviewController;
 use App\Http\Controllers\Common\CommandController;
 use App\Http\Controllers\Common\SubscribeController;
 use App\Http\Controllers\Common\NotificationController;
+use App\Http\Controllers\Common\ProfileController;
 
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
@@ -22,6 +23,11 @@ Route::resource('setting', SettingController::class);
 ## smtp settings
 Route::get('smtp-settings', [SettingController::class, 'smtpIndex'])->name('smtpIndex');
 Route::post('env_key_update', [SettingController::class, 'envKeyUpdate'])->name('envKeyUpdate');
+
+##profile 
+Route::post('profile-update', [ProfileController::class, 'profilesUpdate'])->name('profilesUpdate');
+Route::post('password-update', [ProfileController::class, 'passwordUpdate'])->name('passwordUpdate');
+
 
 ##caregory 
 Route::resource('categories', CategoryController::class);

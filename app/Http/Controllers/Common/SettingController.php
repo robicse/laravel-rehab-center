@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Common;
 
 use File;
+use App\Models\User;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Helpers\ErrorTryCatch;
@@ -41,12 +42,13 @@ class SettingController extends Controller
             $User = $this->User;
             if ($User->user_type == 'Superadmin') {
                 $data = Setting::firstOrFail();
-           
+               
             } else {
                 $data = Setting::whereuser_id($User->id)->firstOrFail();
             }
-           
-            return view('backend.common.setting.index')->with('settingDetail',$data);
+           $profileInfo= User::with('profile')->find(Auth::id());
+            return view('backend.common.setting.newindex',compact('profileInfo'))->with('settingDetail',$data);
+            // return view('backend.common.setting.index')->with('settingDetail',$data);
         } catch (\Exception $e) {
             $response = ErrorTryCatch::createResponse(false, 500, 'Internal Server Error.', null);
             Toastr::error($response['message'], "Error");

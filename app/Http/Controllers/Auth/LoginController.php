@@ -42,7 +42,7 @@ class LoginController extends Controller
             return $this->redirectTo = route('writer.dashboard');
         }
         else {
-            return('/login');
+            return route('login');
 
         }
     }

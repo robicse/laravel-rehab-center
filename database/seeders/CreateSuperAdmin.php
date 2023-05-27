@@ -1,8 +1,9 @@
 <?php
 
 namespace Database\Seeders;
-use App\Helpers\Helper;
 use App\Models\User;
+use App\Helpers\Helper;
+use App\Models\Profile;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,11 @@ class CreateSuperAdmin extends Seeder
             $superAdmin->updated_by_user_id = '1';
             $superAdmin->status = '1';
             if ($superAdmin->save()) {
+                $profile =  new Profile();
+                $profile->user_id = $superAdmin->id;
+                $profile->position ="admin";
+                $profile->gender = "Male";
+                $profile->save();
                 $role = Role::create(['name' => 'Admin']);
                 $superAdmin->assignRole('Admin');
                 $permission = Permission::pluck('name');

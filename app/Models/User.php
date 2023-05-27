@@ -3,16 +3,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
-    // protected $guard_name = 'web';
+    use SoftDeletes;
     protected $fillable = [
+        'id',
         'name',
         'phone',
         'user_type',
@@ -47,7 +50,7 @@ class User extends Authenticatable
         
     ];
 
-    
+    protected $dates = ['deleted_at'];
     public function profile(){
         return $this->hasOne(Profile::class);
     }
